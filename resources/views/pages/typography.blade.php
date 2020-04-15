@@ -15,27 +15,27 @@
                     <div class="card-body">
                         <div class="typography-line">
                             <h1>
-                                <span>Header 1</span>The Life of Paper Dashboard </h1>
+                                <span>Header 1</span>The Life of Afrikathon </h1>
                         </div>
                         <div class="typography-line">
                             <h2>
-                                <span>Header 2</span>The Life of Paper Dashboard </h2>
+                                <span>Header 2</span>The Life of Afrikathon </h2>
                         </div>
                         <div class="typography-line">
                             <h3>
-                                <span>Header 3</span>The Life of Paper Dashboard </h3>
+                                <span>Header 3</span>The Life of Afrikathon </h3>
                         </div>
                         <div class="typography-line">
                             <h4>
-                                <span>Header 4</span>The Life of Paper Dashboard </h4>
+                                <span>Header 4</span>The Life of Afrikathon </h4>
                         </div>
                         <div class="typography-line">
                             <h5>
-                                <span>Header 5</span>The Life of Paper Dashboard </h5>
+                                <span>Header 5</span>The Life of Afrikathon </h5>
                         </div>
                         <div class="typography-line">
                             <h6>
-                                <span>Header 6</span>The Life of Paper Dashboard </h6>
+                                <span>Header 6</span>The Life of Afrikathon </h6>
                         </div>
                         <div class="typography-line">
                             <p>

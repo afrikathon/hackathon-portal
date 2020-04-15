@@ -9,50 +9,54 @@
 
     <!-- Extra details for Live View on GitHub Pages -->
     <!-- Canonical SEO -->
-    <link rel="canonical" href="https://www.creative-tim.com/product/paper-dashboard-laravel"/>
+    <link rel="canonical" href="https://afrikathon.org/"/>
 
 
     <!--  Social tags      -->
-    <meta name="keywords"
-          content="design system, dashboard, bootstrap 4 dashboard, bootstrap 4 design, bootstrap 4 system, bootstrap 4, bootstrap 4 uit kit, bootstrap 4 kit, paper, paper dashboard, creative tim, updivision, html dashboard, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap dashboard, responsive dashboard, laravel, laravel php, laravel php framework, free laravel admin template, free laravel admin, free laravel admin template + Front End + CRUD, crud laravel php, crud laravel, laravel backend admin dashboard">
-    <meta name="description"
-          content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
+    <meta name="keywords" content="Afrikathon">
+    <meta name="description" content="The Opportunity Hackathon
+HACK THE LABOUR SYSTEM
+Rich in diversity and culture, let’s tap into our innermost potential to create the solutions for our future to make over 400 million talented Africans access to evenly distributed opportunity.">
 
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Paper Dashboard Laravel by Creative Tim">
-    <meta itemprop="description"
-          content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
+    <meta itemprop="name" content="Afrikathon ">
+    <meta itemprop="description" content="The Opportunity Hackathon
+HACK THE LABOUR SYSTEM
+Rich in diversity and culture, let’s tap into our innermost potential to create the solutions for our future to make over 400 million talented Africans access to evenly distributed opportunity.">
 
     <meta itemprop="image"
-          content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg">
+          content="https://avatars3.githubusercontent.com/u/60590865?s=200&v=4">
 
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="product">
-    <meta name="twitter:site" content="@creativetim">
-    <meta name="twitter:title" content="Paper Dashboard Laravel by Creative Tim">
+    <meta name="twitter:site" content="@afrikathon">
+    <meta name="twitter:title" content="Afrikathon ">
 
-    <meta name="twitter:description"
-          content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
+    <meta name="twitter:description" content="The Opportunity Hackathon
+HACK THE LABOUR SYSTEM
+Rich in diversity and culture, let’s tap into our innermost potential to create the solutions for our future to make over 400 million talented Africans access to evenly distributed opportunity.">
     <meta name="twitter:creator" content="@creativetim">
     <meta name="twitter:image"
-          content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg">
+          content="https://avatars3.githubusercontent.com/u/60590865?s=200&v=4">
 
 
     <!-- Open Graph data -->
     <meta property="fb:app_id" content="655968634437471">
-    <meta property="og:title" content="Paper Dashboard Laravel by Creative Tim"/>
+    <meta property="og:title" content="Afrikathon"/>
     <meta property="og:type" content="article"/>
-    <meta property="og:url" content="https://www.creative-tim.com/live/paper-dashboard-laravel"/>
+    <meta property="og:url" content="https://avatars3.githubusercontent.com/u/60590865?s=200&v=4"/>
     <meta property="og:image"
-          content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg"/>
+          content="https://avatars3.githubusercontent.com/u/60590865?s=200&v=4"/>
     <meta property="og:description"
-          content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up."/>
-    <meta property="og:site_name" content="Creative Tim"/>
+          content="The Opportunity Hackathon
+HACK THE LABOUR SYSTEM
+Rich in diversity and culture, let’s tap into our innermost potential to create the solutions for our future to make over 400 million talented Africans access to evenly distributed opportunity."/>
+    <meta property="og:site_name" content="Afrikathon"/>
 
     <title>
-        {{ __('Paper Dashboard by Creative Tim') }}
+        {{ __('Afrikathon') }}
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -111,7 +115,7 @@
 <script src="{{ asset('paper') }}/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('paper') }}/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<!-- Afrikathon DEMO methods, don't include it in your project! -->
 <script src="{{ asset('paper') }}/demo/demo.js"></script>
 <!-- Sharrre libray -->
 <script src="../assets/demo/jquery.sharrre.js"></script>

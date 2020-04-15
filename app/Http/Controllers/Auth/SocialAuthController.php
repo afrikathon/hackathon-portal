@@ -89,8 +89,12 @@ class SocialAuthController extends Controller
      */
     public function handleProviderCallback($driver)
     {
+
+        $user = Socialite::driver('github')->user();
+        return $user;
         try {
             $user = Socialite::driver($driver)->user();
+
         } catch (Exception $e) {
             return $this->sendFailedResponse($e->getMessage());
         }
