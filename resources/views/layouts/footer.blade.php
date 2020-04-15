@@ -1,31 +1,30 @@
-<footer class="footer">
+<footer class="footer footer-black  footer-white ">
     <div class="container-fluid">
-        <ul class="nav">
-            <li class="nav-item">
-                <a href="https://creative-tim.com" target="blank" class="nav-link">
-                    {{ __('Creative Tim') }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="https://updivision.com" target="blank" class="nav-link">
-                    {{ __('Updivision') }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    {{ __('About Us') }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    {{ __('Blog') }}
-                </a>
-            </li>
-        </ul>
-        <div class="copyright">
-            &copy; {{ now()->year }} {{ __('made with') }} <i class="tim-icons icon-heart-2"></i> {{ __('by') }}
-            <a href="https://creative-tim.com" target="_blank">{{ __('Creative Tim') }}</a> &amp;
-            <a href="https://updivision.com" target="_blank">{{ __('Updivision') }}</a> {{ __('for a better web') }}.
+        <div class="row">
+            <nav class="footer-nav">
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com" target="_blank">{{ __('Creative Tim') }}</a>
+                    </li>
+                    <li>
+                        <a href="https://updivision.com" target="_blank">{{ __('UpDivision') }}</a>
+                    </li>
+                    <li>
+                        <a href="http://blog.creative-tim.com/" target="_blank">{{ __('Blog') }}</a>
+                    </li>
+                    <li>
+                        <a href="https://www.creative-tim.com/license" target="_blank">{{ __('Licenses') }}</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="credits ml-auto">
+                <span class="copyright">
+                    ©
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>{{ __(', made with ') }}<i class="fa fa-heart heart"></i>{{ __(' by ') }}<a class="@if(Auth::guest()) text-white @endif" href="https://www.creative-tim.com" target="_blank">{{ __('Creative Tim') }}</a>{{ __(' and ') }}<a class="@if(Auth::guest()) text-white @endif" target="_blank" href="https://updivision.com">{{ __('UPDIVISION') }}</a>
+                </span>
+            </div>
         </div>
     </div>
 </footer>

@@ -1,206 +1,123 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="en">
 
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('paper') }}/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="{{ asset('paper') }}/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-        <title>{{ config('app.name', 'Black Dashboard') }}</title>
-        <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('black') }}/img/apple-icon.png">
-        <link rel="icon" type="image/png" href="{{ asset('black') }}/img/favicon.png">
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-        <!-- Icons -->
-        <link href="{{ asset('black') }}/css/nucleo-icons.css" rel="stylesheet" />
-        <!-- CSS -->
-        <link href="{{ asset('black') }}/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-        <link href="{{ asset('black') }}/css/theme.css" rel="stylesheet" />
-    </head>
-    <body class="{{ $class ?? '' }}">
-        @auth()
-            <div class="wrapper">
-                    @include('layouts.navbars.sidebar')
-                <div class="main-panel">
-                    @include('layouts.navbars.navbar')
+    <!-- Extra details for Live View on GitHub Pages -->
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="https://www.creative-tim.com/product/paper-dashboard-laravel"/>
 
-                    <div class="content">
-                        @yield('content')
-                    </div>
 
-                    @include('layouts.footer')
-                </div>
-            </div>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        @else
-            @include('layouts.navbars.navbar')
-            <div class="wrapper wrapper-full-page">
-                <div class="full-page {{ $contentClass ?? '' }}">
-                    <div class="content">
-                        <div class="container">
-                            @yield('content')
-                        </div>
-                    </div>
-                    @include('layouts.footer')
-                </div>
-            </div>
-        @endauth
-        <div class="fixed-plugin">
-            <div class="dropdown show-dropdown">
-                <a href="#" data-toggle="dropdown">
-                <i class="fa fa-cog fa-2x"> </i>
-                </a>
-                <ul class="dropdown-menu">
-                <li class="header-title"> Sidebar Background</li>
-                <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <div class="badge-colors text-center">
-                        <span class="badge filter badge-primary active" data-color="primary"></span>
-                        <span class="badge filter badge-info" data-color="blue"></span>
-                        <span class="badge filter badge-success" data-color="green"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                    </a>
-                </li>
-                <li class="button-container">
-                    <a href="https://www.creative-tim.com/product/black-dashboard-laravel" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a>
-                    <a href="https://demos.creative-tim.com/black-dashboard/docs/1.0/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block btn-round">
-                    Documentation
-                    </a>
-                    <a href="https://www.creative-tim.com/product/black-dashboard-pro-laravel" target="_blank" class="btn btn-danger btn-block btn-round">
-                    Upgrade to PRO
-                    </a>
-                </li>
-                <li class="header-title">Thank you for 95 shares!</li>
-                <li class="button-container text-center">
-                    <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
-                    <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
-                    <br>
-                    <br>
-                    <a class="github-button" href="https://github.com/creativetimofficial/black-dashboard-laravel" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-                </li>
-                </ul>
-            </div>
-        </div>
-        <script src="{{ asset('black') }}/js/core/jquery.min.js"></script>
-        <script src="{{ asset('black') }}/js/core/popper.min.js"></script>
-        <script src="{{ asset('black') }}/js/core/bootstrap.min.js"></script>
-        <script src="{{ asset('black') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-        <!--  Google Maps Plugin    -->
-        <!-- Place this tag in your head or just before your close body tag. -->
-        {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
-        <!-- Chart JS -->
-        {{-- <script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script> --}}
-        <!--  Notifications Plugin    -->
-        <script src="{{ asset('black') }}/js/plugins/bootstrap-notify.js"></script>
+    <!--  Social tags      -->
+    <meta name="keywords"
+          content="design system, dashboard, bootstrap 4 dashboard, bootstrap 4 design, bootstrap 4 system, bootstrap 4, bootstrap 4 uit kit, bootstrap 4 kit, paper, paper dashboard, creative tim, updivision, html dashboard, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap dashboard, responsive dashboard, laravel, laravel php, laravel php framework, free laravel admin template, free laravel admin, free laravel admin template + Front End + CRUD, crud laravel php, crud laravel, laravel backend admin dashboard">
+    <meta name="description"
+          content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
 
-        <script src="{{ asset('black') }}/js/black-dashboard.min.js?v=1.0.0"></script>
-        <script src="{{ asset('black') }}/js/theme.js"></script>
 
-        @stack('js')
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Paper Dashboard Laravel by Creative Tim">
+    <meta itemprop="description"
+          content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
 
-        <script>
-            $(document).ready(function() {
-                $().ready(function() {
-                    $sidebar = $('.sidebar');
-                    $navbar = $('.navbar');
-                    $main_panel = $('.main-panel');
+    <meta itemprop="image"
+          content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg">
 
-                    $full_page = $('.full-page');
 
-                    $sidebar_responsive = $('body > .navbar-collapse');
-                    sidebar_mini_active = true;
-                    white_color = false;
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@creativetim">
+    <meta name="twitter:title" content="Paper Dashboard Laravel by Creative Tim">
 
-                    window_width = $(window).width();
+    <meta name="twitter:description"
+          content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
+    <meta name="twitter:creator" content="@creativetim">
+    <meta name="twitter:image"
+          content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg">
 
-                    fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
 
-                    $('.fixed-plugin a').click(function(event) {
-                        if ($(this).hasClass('switch-trigger')) {
-                            if (event.stopPropagation) {
-                                event.stopPropagation();
-                            } else if (window.event) {
-                                window.event.cancelBubble = true;
-                            }
-                        }
-                    });
+    <!-- Open Graph data -->
+    <meta property="fb:app_id" content="655968634437471">
+    <meta property="og:title" content="Paper Dashboard Laravel by Creative Tim"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="https://www.creative-tim.com/live/paper-dashboard-laravel"/>
+    <meta property="og:image"
+          content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg"/>
+    <meta property="og:description"
+          content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up."/>
+    <meta property="og:site_name" content="Creative Tim"/>
 
-                    $('.fixed-plugin .background-color span').click(function() {
-                        $(this).siblings().removeClass('active');
-                        $(this).addClass('active');
+    <title>
+        {{ __('Paper Dashboard by Creative Tim') }}
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="{{ asset('paper') }}/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet"/>
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet"/>
 
-                        var new_color = $(this).data('color');
-
-                        if ($sidebar.length != 0) {
-                            $sidebar.attr('data', new_color);
-                        }
-
-                        if ($main_panel.length != 0) {
-                            $main_panel.attr('data', new_color);
-                        }
-
-                        if ($full_page.length != 0) {
-                            $full_page.attr('filter-color', new_color);
-                        }
-
-                        if ($sidebar_responsive.length != 0) {
-                            $sidebar_responsive.attr('data', new_color);
-                        }
-                    });
-
-                    $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
-                        var $btn = $(this);
-
-                        if (sidebar_mini_active == true) {
-                            $('body').removeClass('sidebar-mini');
-                            sidebar_mini_active = false;
-                            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
-                        } else {
-                            $('body').addClass('sidebar-mini');
-                            sidebar_mini_active = true;
-                            blackDashboard.showSidebarMessage('Sidebar mini activated...');
-                        }
-
-                        // we simulate the window Resize so the charts will get updated in realtime.
-                        var simulateWindowResize = setInterval(function() {
-                            window.dispatchEvent(new Event('resize'));
-                        }, 180);
-
-                        // we stop the simulation of Window Resize after the animations are completed
-                        setTimeout(function() {
-                            clearInterval(simulateWindowResize);
-                        }, 1000);
-                    });
-
-                    $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
-                            var $btn = $(this);
-
-                            if (white_color == true) {
-                                $('body').addClass('change-background');
-                                setTimeout(function() {
-                                    $('body').removeClass('change-background');
-                                    $('body').removeClass('white-content');
-                                }, 900);
-                                white_color = false;
-                            } else {
-                                $('body').addClass('change-background');
-                                setTimeout(function() {
-                                    $('body').removeClass('change-background');
-                                    $('body').addClass('white-content');
-                                }, 900);
-
-                                white_color = true;
-                            }
-                    });
-                });
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
             });
-        </script>
-        @stack('js')
-    </body>
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body class="{{ $class }}">
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+@auth()
+    @include('layouts.page_templates.auth')
+@endauth
+
+@guest
+    @include('layouts.page_templates.guest')
+@endguest
+
+<!--   Core JS Files   -->
+<script src="{{ asset('paper') }}/js/core/jquery.min.js"></script>
+<script src="{{ asset('paper') }}/js/core/popper.min.js"></script>
+<script src="{{ asset('paper') }}/js/core/bootstrap.min.js"></script>
+<script src="{{ asset('paper') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chart JS -->
+<script src="{{ asset('paper') }}/js/plugins/chartjs.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="{{ asset('paper') }}/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{{ asset('paper') }}/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="{{ asset('paper') }}/demo/demo.js"></script>
+<!-- Sharrre libray -->
+<script src="../assets/demo/jquery.sharrre.js"></script>
+
+@stack('scripts')
+
+</body>
+
 </html>

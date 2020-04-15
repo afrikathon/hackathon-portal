@@ -13,11 +13,14 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel-frontend-presets/black-dashboard": "^1.0",
+        "laravel-frontend-presets/paper": "^1.0",
         "laravel/framework": "^7.0",
+        "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "mll-lab/laravel-graphql-playground": "^2.1",
-        "nuwave/lighthouse": "^4.11"
+        "nuwave/lighthouse": "^4.11",
+        "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

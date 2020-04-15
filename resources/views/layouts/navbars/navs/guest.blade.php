@@ -1,35 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent fixed-top">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+    <div class="container">
         <div class="navbar-wrapper">
-            <div class="navbar-toggle d-inline">
+            <div class="navbar-toggle">
                 <button type="button" class="navbar-toggler">
                     <span class="navbar-toggler-bar bar1"></span>
                     <span class="navbar-toggler-bar bar2"></span>
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="#">{{ $page ?? '' }}</a>
+            <a class="navbar-brand" href="#pablo">{{ __('Paper Dashboard') }}</a>
         </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navigation">
-            <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link text-primary">
-                        <i class="tim-icons icon-minimal-left"></i> {{ __('Back to Dashboard') }}
+                    <a href="{{ route('login') }}" class="nav-link">
+                    <i class="nc-icon nc-layout-11"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a href="{{ route('register') }}" class="nav-link">
-                        <i class="tim-icons icon-laptop"></i> {{ __('Register') }}
+                    <i class="nc-icon nc-book-bookmark"></i>{{ __('Register') }}
                     </a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item  active ">
                     <a href="{{ route('login') }}" class="nav-link">
-                        <i class="tim-icons icon-single-02"></i> {{ __('Login') }}
+                    <i class="nc-icon nc-tap-01"></i>{{ __('Login') }}
                     </a>
                 </li>
             </ul>

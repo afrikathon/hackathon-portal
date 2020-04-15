@@ -2,75 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class PageController extends Controller
 {
     /**
-     * Display icons page
+     * Create a new controller instance.
      *
-     * @return \Illuminate\View\View
+     * @return void
      */
-    public function icons()
+    public function __construct()
     {
-        return view('pages.icons');
+        $this->middleware('auth');
     }
 
     /**
-     * Display maps page
+     * Display all the static pages when authenticated
      *
+     * @param string $page
      * @return \Illuminate\View\View
      */
-    public function maps()
+    public function index(string $page)
     {
-        return view('pages.maps');
-    }
+        if (view()->exists("pages.{$page}")) {
+            return view("pages.{$page}");
+        }
 
-    /**
-     * Display tables page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function tables()
-    {
-        return view('pages.tables');
-    }
-
-    /**
-     * Display notifications page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function notifications()
-    {
-        return view('pages.notifications');
-    }
-
-    /**
-     * Display rtl page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function rtl()
-    {
-        return view('pages.rtl');
-    }
-
-    /**
-     * Display typography page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function typography()
-    {
-        return view('pages.typography');
-    }
-
-    /**
-     * Display upgrade page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function upgrade()
-    {
-        return view('pages.upgrade');
+        return abort(404);
     }
 }
