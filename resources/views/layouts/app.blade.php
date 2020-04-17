@@ -37,7 +37,7 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
     <meta name="twitter:description" content="The Opportunity Hackathon
 HACK THE LABOUR SYSTEM
 Rich in diversity and culture, let’s tap into our innermost potential to create the solutions for our future to make over 400 million talented Africans access to evenly distributed opportunity.">
-    <meta name="twitter:creator" content="@creativetim">
+    <meta name="twitter:creator" content="@afrikathon">
     <meta name="twitter:image"
           content="https://avatars3.githubusercontent.com/u/60590865?s=200&v=4">
 
@@ -69,31 +69,9 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet"/>
 
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');</script>
-    <!-- End Google Tag Manager -->
 </head>
 
 <body class="{{ $class }}">
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 @auth()
     @include('layouts.page_templates.auth')
 @endauth
@@ -108,9 +86,9 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
 <script src="{{ asset('paper') }}/js/core/bootstrap.min.js"></script>
 <script src="{{ asset('paper') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+{{--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>--}}
 <!-- Chart JS -->
-<script src="{{ asset('paper') }}/js/plugins/chartjs.min.js"></script>
+{{--<script src="{{ asset('paper') }}/js/plugins/chartjs.min.js"></script>--}}
 <!--  Notifications Plugin    -->
 <script src="{{ asset('paper') }}/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
@@ -118,7 +96,7 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
 <!-- Afrikathon DEMO methods, don't include it in your project! -->
 <script src="{{ asset('paper') }}/demo/demo.js"></script>
 <!-- Sharrre libray -->
-<script src="../assets/demo/jquery.sharrre.js"></script>
+<script src="{{ asset('paper') }}/demo/jquery.sharrre.js"></script>
 
 @stack('scripts')
 

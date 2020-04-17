@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -84,20 +85,20 @@ class SocialAuthController extends Controller
     /**
      * Handle response of authentication redirect callback
      *
+     * @param Request $request
      * @param $driver
      * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback($driver)
     {
-
-        $user = Socialite::driver('github')->user();
-        return $user;
         try {
             $user = Socialite::driver($driver)->user();
 
         } catch (Exception $e) {
             return $this->sendFailedResponse($e->getMessage());
         }
+
+
 
         // check for email in returned user
         return empty($user->email)
@@ -107,7 +108,7 @@ class SocialAuthController extends Controller
 
     protected function loginOrCreateAccount($providerUser, $driver)
     {
-        return $providerUser;
+        dd($providerUser);
         // check for already has account
         $user = User::where('email', $providerUser->getEmail())->first();
 
@@ -120,6 +121,14 @@ class SocialAuthController extends Controller
                 'provider_id' => $providerUser->id,
                 'access_token' => $providerUser->token
             ]);
+            if($driver == 'github'){
+                $user->update([
+                    'github' => $providerUser->user->html_url,
+                    'public_repos' => $providerUser->user->public_repos,
+                    'public_gists' => $providerUser->user->public_gists,
+                    'followers' => $providerUser->user->followers,
+                ]);
+            }
         } else {
             // create a new user
             $user = User::create([
@@ -132,6 +141,19 @@ class SocialAuthController extends Controller
                 // user can use reset password to create a password
                 'password' => ''
             ]);
+            if($driver == 'github'){
+                $user->update([
+                    'github' => $providerUser->user->html_url,
+                    'public_repos' => $providerUser->user->public_repos,
+                    'public_gists' => $providerUser->user->public_gists,
+                    'bio' => $providerUser->user->bio,
+                    'website' => $providerUser->user->blog,
+                    'username' =>  $providerUser->nickname,
+                    'followers' => $providerUser->user->followers,
+                    'country' => $providerUser->user->location,
+
+                ]);
+            }
         }
 
         // login the user
