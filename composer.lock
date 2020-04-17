@@ -4,8 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9d819db673bc764909ce75671ff9498",
+    "content-hash": "7f96c2fea3d7cf504ca3d0ea9182420c",
     "packages": [
+        {
+            "name": "alexaandrov/laravel-graphql-client",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexaandrov/laravel-graphql-client.git",
+                "reference": "d88bf8efe222a02e386f9edfb692a7d1a5dac941"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexaandrov/laravel-graphql-client/zipball/d88bf8efe222a02e386f9edfb692a7d1a5dac941",
+                "reference": "d88bf8efe222a02e386f9edfb692a7d1a5dac941",
+                "shasum": ""
+            },
+            "require": {
+                "euautomation/graphql-client": "^0.2.0",
+                "ext-json": "*",
+                "php": ">= 7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Alexaandrov\\GraphQL\\GraphQLClientServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Alexaandrov\\GraphQL\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grigory Alexandrov",
+                    "email": "alexaaandrov@gmail.com",
+                    "homepage": "https://www.linkedin.com/in/alexaandrov/"
+                }
+            ],
+            "description": "GraphQL client for laravel/lumen",
+            "keywords": [
+                "api",
+                "client",
+                "graphql",
+                "laravel",
+                "laravel-graphql"
+            ],
+            "time": "2019-08-15T10:20:47+00:00"
+        },
         {
             "name": "arrilot/laravel-widgets",
             "version": "3.13.0",
@@ -989,6 +1045,55 @@
                 "validator"
             ],
             "time": "2020-02-13T22:36:52+00:00"
+        },
+        {
+            "name": "euautomation/graphql-client",
+            "version": "0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/euautomation/graphql-client.git",
+                "reference": "113ca864986a99c20c3132408469a2089c5ff7a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/euautomation/graphql-client/zipball/113ca864986a99c20c3132408469a2089c5ff7a6",
+                "reference": "113ca864986a99c20c3132408469a2089c5ff7a6",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EUAutomation\\GraphQL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carl Knowles",
+                    "email": "carl.knowles@euautomation.com"
+                },
+                {
+                    "name": "Rob Wells",
+                    "email": "rob.wells@euautomation.com"
+                }
+            ],
+            "description": "A simple client to help execute queries and mutations across GraphQL",
+            "keywords": [
+                "client",
+                "graphql",
+                "php"
+            ],
+            "time": "2016-11-11T10:09:23+00:00"
         },
         {
             "name": "fideloper/proxy",

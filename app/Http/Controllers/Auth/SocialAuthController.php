@@ -99,7 +99,6 @@ class SocialAuthController extends Controller
         }
 
 
-
         // check for email in returned user
         return empty($user->email)
             ? $this->sendFailedResponse("No email id returned from {$driver} provider.")
@@ -108,6 +107,30 @@ class SocialAuthController extends Controller
 
     protected function loginOrCreateAccount($providerUser, $driver)
     {
+        if ($driver == 'github') {
+            $query = <<<QUERY
+{
+  user(login: "eadortsu") {
+    topRepositories(first: 10, orderBy: {direction: DESC, field: UPDATED_AT}) {
+      nodes {
+        name
+        languages(first: 4, orderBy: {direction: DESC, field: SIZE}) {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+QUERY;
+
+
+            $queryResponse = Alexaandrov\GraphQL\Facades\Client::fetch($query);
+
+            dd($queryResponse);
+        }
+
         dd($providerUser);
         // check for already has account
         $user = User::where('email', $providerUser->getEmail())->first();
@@ -121,7 +144,7 @@ class SocialAuthController extends Controller
                 'provider_id' => $providerUser->id,
                 'access_token' => $providerUser->token
             ]);
-            if($driver == 'github'){
+            if ($driver == 'github') {
                 $user->update([
                     'github' => $providerUser->user->html_url,
                     'public_repos' => $providerUser->user->public_repos,
@@ -141,14 +164,14 @@ class SocialAuthController extends Controller
                 // user can use reset password to create a password
                 'password' => ''
             ]);
-            if($driver == 'github'){
+            if ($driver == 'github') {
                 $user->update([
                     'github' => $providerUser->user->html_url,
                     'public_repos' => $providerUser->user->public_repos,
                     'public_gists' => $providerUser->user->public_gists,
                     'bio' => $providerUser->user->bio,
                     'website' => $providerUser->user->blog,
-                    'username' =>  $providerUser->nickname,
+                    'username' => $providerUser->nickname,
                     'followers' => $providerUser->user->followers,
                     'country' => $providerUser->user->location,
 
