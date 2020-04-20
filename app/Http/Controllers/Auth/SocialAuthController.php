@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use eadortsu\GraphQL\Facades\Client;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,14 +108,14 @@ class SocialAuthController extends Controller
 
     protected function loginOrCreateAccount($providerUser, $driver)
     {
+
         if ($driver == 'github') {
-            $query = <<<QUERY
-{
-  user(login: "eadortsu") {
-    topRepositories(first: 10, orderBy: {direction: DESC, field: UPDATED_AT}) {
+            $query = '{
+  user(login: "' . $providerUser->nickname . '") {
+    topRepositories(first: 100, orderBy: {direction: DESC, field: UPDATED_AT}) {
       nodes {
         name
-        languages(first: 4, orderBy: {direction: DESC, field: SIZE}) {
+        languages(first: 1, orderBy: {direction: DESC, field: SIZE}) {
           nodes {
             name
           }
@@ -123,15 +124,28 @@ class SocialAuthController extends Controller
     }
   }
 }
-QUERY;
+';
 
 
-            $queryResponse = Alexaandrov\GraphQL\Facades\Client::fetch($query);
+            $queryResponse = Client::fetch($query, 'https://api.github.com/graphql', [], env('GITHUB_TOKEN'));
 
-            dd($queryResponse);
+            $githubData = $queryResponse->all();
+
+            $languages = [];
+            $languages_count = [];
+            foreach ($githubData->user->topRepositories->nodes as $repo) {
+                if (!empty($repo->languages->nodes)) {
+                    array_push($languages, $repo->languages->nodes[0]->name);
+                }
+            }
+            foreach ($languages as $language){
+                $languages_count[$language] = count(array_keys($languages, $language));
+            }
+            $languages = array_unique($languages);
+            $languages_count = array_unique($languages_count);
+
+
         }
-
-        dd($providerUser);
         // check for already has account
         $user = User::where('email', $providerUser->getEmail())->first();
 
@@ -146,10 +160,10 @@ QUERY;
             ]);
             if ($driver == 'github') {
                 $user->update([
-                    'github' => $providerUser->user->html_url,
-                    'public_repos' => $providerUser->user->public_repos,
-                    'public_gists' => $providerUser->user->public_gists,
-                    'followers' => $providerUser->user->followers,
+                    'github' => $providerUser->user['html_url'],
+                    'public_repos' => $providerUser->user['public_repos'],
+                    'public_gist' => $providerUser->user['public_gists'],
+                    'followers' => $providerUser->user['followers'],
                 ]);
             }
         } else {
@@ -166,17 +180,25 @@ QUERY;
             ]);
             if ($driver == 'github') {
                 $user->update([
-                    'github' => $providerUser->user->html_url,
-                    'public_repos' => $providerUser->user->public_repos,
-                    'public_gists' => $providerUser->user->public_gists,
-                    'bio' => $providerUser->user->bio,
-                    'website' => $providerUser->user->blog,
+                    'github' => $providerUser->user['html_url'],
+                    'public_repos' => $providerUser->user['public_repos'],
+                    'public_gist' => $providerUser->user['public_gists'],
+                    'followers' => $providerUser->user['followers'],
+                    'bio' => $providerUser->user['bio'],
+                    'website' => $providerUser->user['blog'],
                     'username' => $providerUser->nickname,
-                    'followers' => $providerUser->user->followers,
-                    'country' => $providerUser->user->location,
-
+                    'country' => $providerUser->user['location'],
+                    'skills' => implode(',',$languages)
                 ]);
             }
+        }
+
+        if ($driver == 'github') {
+
+            $user->update([
+                'languages' => serialize($languages_count)
+            ]);
+
         }
 
         // login the user

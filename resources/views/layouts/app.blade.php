@@ -88,7 +88,7 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
 <!--  Google Maps Plugin    -->
 {{--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>--}}
 <!-- Chart JS -->
-{{--<script src="{{ asset('paper') }}/js/plugins/chartjs.min.js"></script>--}}
+<script src="{{ asset('paper') }}/js/plugins/chartjs.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="{{ asset('paper') }}/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
@@ -99,6 +99,7 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
 <script src="{{ asset('paper') }}/demo/jquery.sharrre.js"></script>
 
 @stack('scripts')
+@yield('scripts')
 
 </body>
 

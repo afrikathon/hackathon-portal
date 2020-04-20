@@ -1,9 +1,6 @@
 <?php
 
 return [
-    'endpoint_url' => env('GRAPHQL_ENDPOINT_URL'),
-    'headers' => [
-        'X-Service-Name' => env('APP_NAME'),
-        'X-Request-Secret' => env('APP_KEY')
-    ]
+    'authorization_type' => 'bearer', // or 'api key'
+    'key' => 'token' // required if `authorization_type` == `api key`
 ];

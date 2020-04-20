@@ -8,10 +8,16 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="#pablo">{{ __('Afrikathon') }}</a>
+            <a class="navbar-brand" href="{{route('root')}}"><img style="width: 200px"
+                                                                  src="{{asset('img/logo-white.png')}}"></a>
+            <ul class="navbar-nav nav-menu">
+                <li class="nav-item"><a class="nav-menu-link active" href="{{route('root')}}">Profile</a></li>
+                <li class="nav-item"><a class="nav-menu-link" href="{{route('teams')}}">Teams</a></li>
+                <li class="nav-item"><a class="nav-menu-link" href="{{route('submit')}}">Submit Idea</a></li>
+            </ul>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-            aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -28,43 +34,35 @@
                 </div>
             </form>
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link btn-magnify" href="#pablo">
-                        <i class="nc-icon nc-layout-11"></i>
-                        <p>
-                            <span class="d-lg-none d-md-block">{{ __('Stats') }}</span>
-                        </p>
-                    </a>
-                </li>
                 <li class="nav-item btn-rotate dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="nc-icon nc-bell-55"></i>
                         <p>
                             <span class="d-lg-none d-md-block">{{ __('Some Actions') }}</span>
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">{{ __('Action') }}</a>
-                        <a class="dropdown-item" href="#">{{ __('Another action') }}</a>
-                        <a class="dropdown-item" href="#">{{ __('Something else here') }}</a>
+                        <a class="dropdown-item" href="#">{{ __('No Notification') }}</a>
                     </div>
                 </li>
                 <li class="nav-item btn-rotate dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink2"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="nc-icon nc-settings-gear-65"></i>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img style="width: 30px;border: 100px" src="{{Auth::user()->avatar}}">
                         <p>
                             <span class="d-lg-none d-md-block">{{ __('Account') }}</span>
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
-                        <form class="dropdown-item" action="{{ route('logout') }}" id="formLogOut" method="POST" style="display: none;">
+                        <form class="dropdown-item" action="{{ route('logout') }}" id="formLogOut" method="POST"
+                              style="display: none;">
                             @csrf
                         </form>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
                             <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('My profile') }}</a>
+                            <a class="dropdown-item"
+                               onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
                         </div>
                     </div>
                 </li>

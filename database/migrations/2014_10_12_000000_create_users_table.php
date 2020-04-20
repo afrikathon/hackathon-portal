@@ -34,6 +34,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
+            $table->string('public_repos')->nullable();
+            $table->string('public_gist')->nullable();
+            $table->string('followers')->nullable();
+            $table->text('languages')->nullable();
+
             $table->string('provider', 20)->nullable();
             $table->string('provider_id')->nullable();
             $table->string('access_token')->nullable();

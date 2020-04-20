@@ -23,6 +23,29 @@ Licensed under the MIT license - http://opensource.org/licenses/MIT
 Copyright (c) 2015 Daniel Eden
 */
 
+@media only screen and (min-width: 992px) {
+    .sidebar{
+        display: none !important;
+    }
+    .nav-menu{
+        display: flex !important;
+    }
+}
+
+.nav-menu{
+    display: none;
+    margin-left: 200px;
+    flex-direction: row;
+}
+.nav-menu-link.active, .nav-menu-link:hover{
+    border-bottom: 1px solid #ffffff;
+}
+
+.nav-menu-link {
+    color: #ffff !important;
+    font-size: larger !important;
+    margin-left: 50px;
+}
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -3156,7 +3179,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .navbar.navbar-transparent {
-  background-color: transparent !important;
+  background-color: black !important;
   box-shadow: none;
   border-bottom: 1px solid #ddd;
 }
@@ -5805,8 +5828,8 @@ License - nucleoapp.com/license/
 }
 
 .card-user .avatar {
-  width: 124px;
-  height: 124px;
+  width: 150px;
+  height: 150px;
   border: 1px solid #FFFFFF;
   position: relative;
 }

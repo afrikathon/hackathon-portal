@@ -6,7 +6,7 @@
             </div>
         </a>
         <a href="{{route('root')}}" class="simple-text logo-normal">
-            {{ __('Afrikathon') }}
+            {{ __('Afrikathonn') }}
         </a>
     </div>
     <div class="sidebar-wrapper">

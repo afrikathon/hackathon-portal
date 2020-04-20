@@ -4,64 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f96c2fea3d7cf504ca3d0ea9182420c",
+    "content-hash": "6ffdf8db896c1249fd2f7ec671eefdc5",
     "packages": [
-        {
-            "name": "alexaandrov/laravel-graphql-client",
-            "version": "0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/alexaandrov/laravel-graphql-client.git",
-                "reference": "d88bf8efe222a02e386f9edfb692a7d1a5dac941"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/alexaandrov/laravel-graphql-client/zipball/d88bf8efe222a02e386f9edfb692a7d1a5dac941",
-                "reference": "d88bf8efe222a02e386f9edfb692a7d1a5dac941",
-                "shasum": ""
-            },
-            "require": {
-                "euautomation/graphql-client": "^0.2.0",
-                "ext-json": "*",
-                "php": ">= 7.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Alexaandrov\\GraphQL\\GraphQLClientServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Alexaandrov\\GraphQL\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Grigory Alexandrov",
-                    "email": "alexaaandrov@gmail.com",
-                    "homepage": "https://www.linkedin.com/in/alexaandrov/"
-                }
-            ],
-            "description": "GraphQL client for laravel/lumen",
-            "keywords": [
-                "api",
-                "client",
-                "graphql",
-                "laravel",
-                "laravel-graphql"
-            ],
-            "time": "2019-08-15T10:20:47+00:00"
-        },
         {
             "name": "arrilot/laravel-widgets",
             "version": "3.13.0",
@@ -178,25 +122,26 @@
         },
         {
             "name": "brick/math",
-            "version": "0.8.14",
+            "version": "0.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/math.git",
-                "reference": "6f7a46b5c3d487b277f38fbd17df57d348cace8a"
+                "reference": "9b08d412b9da9455b210459ff71414de7e6241cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/6f7a46b5c3d487b277f38fbd17df57d348cace8a",
-                "reference": "6f7a46b5c3d487b277f38fbd17df57d348cace8a",
+                "url": "https://api.github.com/repos/brick/math/zipball/9b08d412b9da9455b210459ff71414de7e6241cd",
+                "reference": "9b08d412b9da9455b210459ff71414de7e6241cd",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "ext-json": "*",
+                "php": "^7.1|^8.0"
             },
             "require-dev": {
-                "php-coveralls/php-coveralls": "2.*",
-                "phpunit/phpunit": "7.*",
-                "vimeo/psalm": "3.*"
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^7.5.15|^8.5",
+                "vimeo/psalm": "^3.5"
             },
             "type": "library",
             "autoload": {
@@ -219,7 +164,7 @@
                 "brick",
                 "math"
             ],
-            "time": "2020-02-17T13:57:43+00:00"
+            "time": "2020-04-15T15:59:35+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -989,6 +934,62 @@
             "time": "2019-03-31T00:38:28+00:00"
         },
         {
+            "name": "eadortsu/laravel-graphql-client",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eadortsu/laravel-graphql-client.git",
+                "reference": "82b2c538460a61ec477486ede3e4459645487e1f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eadortsu/laravel-graphql-client/zipball/82b2c538460a61ec477486ede3e4459645487e1f",
+                "reference": "82b2c538460a61ec477486ede3e4459645487e1f",
+                "shasum": ""
+            },
+            "require": {
+                "euautomation/graphql-client": "^0.2.0",
+                "ext-json": "*",
+                "php": ">= 7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "eadortsu\\GraphQL\\GraphQLClientServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "eadortsu\\GraphQL\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eugene Adortsu",
+                    "email": "mail@eadortsu.com",
+                    "homepage": "https://www.eadortsu.com/"
+                }
+            ],
+            "description": "GraphQL client for laravel/lumen",
+            "keywords": [
+                "api",
+                "client",
+                "graphql",
+                "laravel",
+                "laravel-graphql"
+            ],
+            "time": "2020-04-17T19:16:57+00:00"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "2.1.17",
             "source": {
@@ -1736,16 +1737,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.6.1",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8299b6dc0ff00b94d15f3d305b577addbb0d359f"
+                "reference": "695be25d84b5cedd0026c428d4e9697fe8cd06f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8299b6dc0ff00b94d15f3d305b577addbb0d359f",
-                "reference": "8299b6dc0ff00b94d15f3d305b577addbb0d359f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/695be25d84b5cedd0026c428d4e9697fe8cd06f9",
+                "reference": "695be25d84b5cedd0026c428d4e9697fe8cd06f9",
                 "shasum": ""
             },
             "require": {
@@ -1883,7 +1884,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-04-14T14:21:25+00:00"
+            "time": "2020-04-15T20:57:47+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -2144,16 +2145,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.66",
+            "version": "1.0.67",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21"
+                "reference": "5b1f36c75c4bdde981294c2a0ebdb437ee6f275e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/021569195e15f8209b1c4bebb78bd66aa4f08c21",
-                "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
+                "reference": "5b1f36c75c4bdde981294c2a0ebdb437ee6f275e",
                 "shasum": ""
             },
             "require": {
@@ -2224,7 +2225,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2020-03-17T18:58:12+00:00"
+            "time": "2020-04-16T13:21:26+00:00"
         },
         {
             "name": "league/oauth1-client",
@@ -7089,7 +7090,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "eadortsu/laravel-graphql-client": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

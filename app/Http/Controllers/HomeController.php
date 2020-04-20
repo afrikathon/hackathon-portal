@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class HomeController extends Controller
 {
     /**
@@ -11,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('profile');
     }
 
     /**
@@ -23,4 +25,85 @@ class HomeController extends Controller
     {
         return view('pages.dashboard');
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function team()
+    {
+        return view('pages.team');
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function teams()
+    {
+        return view('pages.teams');
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function team_create()
+    {
+        return view('pages.team_create');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function team_store(Request $request)
+    {
+        return view('pages.team');
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function team_join(Request $request)
+    {
+        return view('pages.team');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function team_invite(Request $request)
+    {
+        return view('pages.team');
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function submit()
+    {
+        return view('pages.submit');
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function submit_store(Request $request)
+    {
+        return view('pages.team');
+    }
+
 }
