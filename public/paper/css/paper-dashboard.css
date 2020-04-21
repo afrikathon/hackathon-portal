@@ -3178,11 +3178,12 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   width: 17px;
 }
 
-.navbar.navbar-transparent {
+.navbar.navbar-transparent.black {
   background-color: black !important;
   box-shadow: none;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd !important;
 }
+
 
 .navbar.navbar-transparent a:not(.dropdown-item):not(.btn) {
   color: #66615B;
