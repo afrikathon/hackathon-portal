@@ -76,6 +76,9 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
     @include('layouts.page_templates.auth')
 @endauth
 
+@guest
+    @include('layouts.page_templates.guest')
+@endguest
 
 <!--   Core JS Files   -->
 <script src="{{ asset('paper') }}/js/core/jquery.min.js"></script>
