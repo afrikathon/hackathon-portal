@@ -28,8 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('website')->nullable();
             $table->text('skills')->nullable();
             $table->text('bio')->nullable();
-            $table->string('role')->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('job_role')->nullable();
+            /*   $table->string('avatar')->nullable();*/
             $table->string('experience')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

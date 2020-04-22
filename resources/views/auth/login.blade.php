@@ -10,15 +10,15 @@
                 <div class="col-lg-5 col-md-5 ml-auto">
                     <div class="info-area info-horizontal mt-5">
                         <div class="description">
-                            <img src="https://afrikathon.org/wp-content/uploads/2020/04/logo-white.png">
+                            <img src="{{asset('img/logo-white.png')}}">
                             <h2 class="description">
-                                The Opportunity Hackathon
+
                             </h2>
                         </div>
                     </div>
                     <div class="info-area info-horizontal">
                         <div class="description">
-                            <h5 class="info-title">HACK THE LABOUR SYSTEM</h5>
+                            <h5 class="info-title">The Opportunity Hackathon</h5>
                             <p class="description">
                                 Rich in diversity and culture, let’s tap into our innermost potential to create the
                                 solutions for our future to make over 400 million talented Africans access to evenly
@@ -30,15 +30,15 @@
 
                         <div class="description">
                             <div class="social">
-                                <button class="btn btn-icon btn-round btn-gtihub">
-                                    <i class="fa fa-github"></i>
-                                </button>
-                                <button class="btn btn-icon btn-round btn-twitter">
-                                    <i class="fa fa-google"></i>
-                                </button>
-                                <button class="btn btn-icon btn-round btn-facebook">
-                                    <i class="fa fa-linkedin"></i>
-                                </button>
+                                <a href="https://twitter.com/afrikathon" target="_blank" class="btn btn-icon btn-round btn-twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="https://www.facebook.com/afrikathon" target="_blank" class="btn btn-icon btn-round btn-facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="https://www.instagram.com/afrikathon__/" target="_blank" class="btn btn-icon btn-round btn-dribbble">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -48,15 +48,16 @@
                         <div class="card-header ">
                             <h4 class="card-title">{{ __('Login') }}</h4>
                             <div class="social">
-                                <a href="{{ route('social.oauth', 'github') }}" class="btn btn-icon btn-round btn-gtihub">
-                                    <i class="fa fa-github"></i>
+                                <a href="{{ route('social.oauth', 'github') }}"
+                                   class="btn btn-github">
+                                    <i class="fa fa-github"></i> Login with Github
                                 </a>
-                                <a href="{{ route('social.oauth', 'google') }}" class="btn btn-icon btn-round btn-twitter">
+                               {{-- <a href="{{ route('social.oauth', 'google') }}" class="btn btn-icon btn-round btn-twitter">
                                     <i class="fa fa-google"></i>
                                 </a>
                                 <a href="{{ route('social.oauth', 'linked') }}" class="btn btn-icon btn-round btn-facebook">
                                     <i class="fa fa-linkedin"></i>
-                                </a>
+                                </a>--}}
                                 <p class="card-description">{{ __('or be classical') }}</p>
                             </div>
                         </div>

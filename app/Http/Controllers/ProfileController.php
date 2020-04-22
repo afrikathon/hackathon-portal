@@ -13,6 +13,15 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    public function show()
+    {
+        return view('profile.show');
+    }
+    /**
+     * Show the form for editing the profile.
+     *
+     * @return \Illuminate\View\View
+     */
     public function edit()
     {
         return view('profile.edit');

@@ -18,8 +18,8 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="{{ route('login') }}" class="nav-link">
-                    <i class="nc-icon nc-layout-11"></i> {{ __('Dashboard') }}
+                    <a href="https://afrikathon.org" class="nav-link">
+                    <i class="nc-icon nc-shop"></i> {{ __('Home') }}
                     </a>
                 </li>
                 <li class="nav-item ">

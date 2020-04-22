@@ -8,10 +8,10 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="{{route('root')}}"><img style="width: 200px"
+            <a class="navbar-brand" href="{{route('root')}}"><img style="width: 160px"
                                                                   src="{{asset('img/logo-white.png')}}"></a>
             <ul class="navbar-nav nav-menu">
-                <li class="nav-item"><a class="nav-menu-link active" href="{{route('root')}}">Profile</a></li>
+                <li class="nav-item"><a class="nav-menu-link" href="{{route('profile.show')}}">Profile</a></li>
                 <li class="nav-item"><a class="nav-menu-link" href="{{route('teams')}}">Teams</a></li>
                 <li class="nav-item"><a class="nav-menu-link" href="{{route('submit')}}">Submit Idea</a></li>
             </ul>
