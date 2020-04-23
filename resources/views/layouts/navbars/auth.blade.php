@@ -2,23 +2,17 @@
     <div class="logo">
         <a href="{{route('root')}}" class="simple-text logo-mini">
             <div class="logo-image-small">
-                <img src="{{ asset('paper') }}/img/logo-small.png">
+                <img src="{{ asset('img/logo.jpg') }}">
             </div>
         </a>
         <a href="{{route('root')}}" class="simple-text logo-normal">
-            {{ __('Afrikathonn') }}
+            {{ __('Afrikathon') }}
         </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'dashboard') }}">
-                    <i class="nc-icon nc-bank"></i>
-                    <p>{{ __('Dashboard') }}</p>
-                </a>
-            </li>
             <li class="{{ $elementActive == 'profile' ? 'active' : '' }}">
-                <a href="{{ route('profile.edit') }}">
+                <a href="{{ route('profile.show') }}">
                     <span class="sidebar-mini-icon"><i class="fa fa-user"></i></span>
                     <span class="sidebar-normal">{{ __(' User Profile ') }}</span>
                 </a>
