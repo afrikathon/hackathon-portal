@@ -211,7 +211,7 @@
                                                type="checkbox">
                                         <span class="form-check-sign"></span>
                                         {{ __('I agree to the') }}
-                                        <a href="#something">{{ __('terms and conditions') }}</a>.
+                                        <a target="_blank" href="https://afrikathon.org/tandc">{{ __('terms and conditions') }}</a>.
                                     </label>
                                     @if ($errors->has('agree_terms_and_conditions'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
