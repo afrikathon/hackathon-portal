@@ -111,7 +111,7 @@
                                         </span>
                                     </div>
                                     <select name="country" type="" class="form-control" required>
-                                        <option readonly="" selected>--- Select country---</option>
+                                        <option readonly="" selected>--- Select country ---</option>
                                         <option id="DZ" value="Algeria">Algeria</option>
                                         <option id="AO" value="Angola">Angola</option>
                                         <option id="BJ" value="Benin">Benin</option>
@@ -211,7 +211,7 @@
                                                type="checkbox">
                                         <span class="form-check-sign"></span>
                                         {{ __('I agree to the') }}
-                                        <a href="https://afrikathon.org/tandc">{{ __('terms and conditions') }}</a>.
+                                        <a href="https://afrikathon.org/tandc" target="_blank">{{ __('terms and conditions') }}</a>.
                                     </label>
                                     @if ($errors->has('agree_terms_and_conditions'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
