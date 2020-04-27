@@ -16,6 +16,7 @@
 
                             <img class="avatar border-gray" src="{{ auth()->user()->avatar}}" alt="...">
 
+
                             <h5 class="title mb-0">{{ __(auth()->user()->name)}}</h5>
                             <p class="mb-0">{{ __(auth()->user()->email)}}</p>
 
@@ -68,15 +69,47 @@
                         </p>
                     </div>
                 </div>
+                <div class="card">
+                    <h6 class="card-header card-header-info">
+                        <span class="pull-left"> Profile Completeness </span>
+                        <span> <a href="{{route('profile.edit')}}" style="margin: 0" class="pull-right btn btn-black"><i
+                                    class="fa fa-edit"></i> Edit Profile</a></span>
+                    </h6>
+                    <div class="card-body">
+                        <div class="progress-container progress-info">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar"
+                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                                     style="width: 60%; background-color: black">
+                                    <span class="progress-value">60%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="card">
 
                     <div class="card-body">
-                        <h4 class="card-title">{{ __('Technical Skills') }}</h4>
+
+
+                        <h4 class="card-title">{{ __('Technical Skills') }}
+                            <span> <a href="{{ route('social.oauth', 'github') }}"
+                                      class="pull-right btn btn-github btn-sm" style="margin: 0; font-size: small ">
+                                    <i class="fa fa-github" style="font-size: large "></i> Update with Github
+                                    </a></span>
+                            <span> <a href="{{route('profile.edit')}}" style="margin: 0 5px 0 0;font-size: small"
+                                      class="pull-right btn btn-black btn-sm"><i style="font-size: large "
+                                                                                 class="fa fa-edit"></i> Edit Profile</a></span>
+
+
+
+                        </h4>
                         <p> {{auth()->user()->skills}}</p>
                         <br>
-                        <h4 class="card-title">{{ __('Language Activity') }} <img src="https://i.ytimg.com/vi/ptK9-CNms98/maxresdefault.jpg" style="width: 90px"></h4>
+                        <h4 class="card-title">{{ __('Language Activity') }} <img src="{{asset('img/github.png')}}"
+                                                                                  style="width: 100px"></h4>
                         <canvas id="chartEmail"></canvas>
                     </div>
                     <div class="card-footer">
@@ -110,113 +143,113 @@
     </div>
 @endsection
 @section('scripts')
-    @if(auth()->user()->languages != "")
-    @php
-        $lang_count = sizeof(unserialize(auth()->user()->languages) );
-    $i = 0;
-    @endphp
-    <script>
-        $(document).ready(function () {
+    @if(auth()->user()->languages != "" )
+        @php
+            $lang_count = sizeof(unserialize(auth()->user()->languages) );
+        $i = 0;
+        @endphp
+        <script>
+            $(document).ready(function () {
 
-            const ctx = document.getElementById('chartEmail').getContext("2d");
+                const ctx = document.getElementById('chartEmail').getContext("2d");
 
-            myChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: [
-                        @foreach(unserialize(auth()->user()->languages) as $lang=>$count)
-                            @php
-                                $i++;
-                            @endphp
-                            '{{$lang}}'
-                        @if($i != $lang_count  )
-                        ,
-                        @endif
-                        @endforeach
-                    ],
-                    datasets: [{
-                        label: "Emails",
-                        pointRadius: 0,
-                        pointHoverRadius: 4,
-                        backgroundColor: [
-                            '#71cd4a',
-                            '#4acccd',
-                            '#fcc468',
-                            '#ef8157',
-                            '#e3e3e3',
-                            '#cd4a4a',
-                            '#0039ff',
-                            '#fff100',
-                            '#000000',
-                            '#c700ff'
-                        ],
-                        borderWidth: 0,
-                        data: [
+                myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: [
                             @foreach(unserialize(auth()->user()->languages) as $lang=>$count)
                                 @php
-                                    $i--;
+                                    $i++;
                                 @endphp
-                                '{{$count}}'
-                            @if($i != 0 )
+                                '{{$lang}}'
+                            @if($i != $lang_count  )
                             ,
                             @endif
                             @endforeach
-                        ]
-                    }]
-                },
-
-                options: {
-
-                    legend: {
-                        display: true,
-                        position: 'bottom'
-                    },
-                    title: {
-                        display: true
-                    },
-
-                    pieceLabel: {
-                        render: 'percentage',
-                        fontColor: ['white'],
-                        precision: 2
-                    },
-
-                    tooltips: {
-                        enabled: true
-                    },
-
-                    scales: {
-                        yAxes: [{
-
-                            ticks: {
-                                display: false
-                            },
-                            gridLines: {
-                                drawBorder: false,
-                                zeroLineColor: "transparent",
-                                color: 'rgba(255,255,255,0.05)'
-                            }
-
-                        }],
-
-                        xAxes: [{
-                            barPercentage: 1.6,
-                            gridLines: {
-                                drawBorder: false,
-                                color: 'rgba(255,255,255,0.1)',
-                                zeroLineColor: "transparent"
-                            },
-                            ticks: {
-                                display: false,
-                            }
+                        ],
+                        datasets: [{
+                            label: "Emails",
+                            pointRadius: 0,
+                            pointHoverRadius: 4,
+                            backgroundColor: [
+                                '#71cd4a',
+                                '#4acccd',
+                                '#fcc468',
+                                '#ef8157',
+                                '#e3e3e3',
+                                '#cd4a4a',
+                                '#0039ff',
+                                '#fff100',
+                                '#000000',
+                                '#c700ff'
+                            ],
+                            borderWidth: 0,
+                            data: [
+                                @foreach(unserialize(auth()->user()->languages) as $lang=>$count)
+                                    @php
+                                        $i--;
+                                    @endphp
+                                    '{{$count}}'
+                                @if($i != 0 )
+                                ,
+                                @endif
+                                @endforeach
+                            ]
                         }]
                     },
-                }
+
+                    options: {
+
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true
+                        },
+
+                        pieceLabel: {
+                            render: 'percentage',
+                            fontColor: ['white'],
+                            precision: 2
+                        },
+
+                        tooltips: {
+                            enabled: true
+                        },
+
+                        scales: {
+                            yAxes: [{
+
+                                ticks: {
+                                    display: false
+                                },
+                                gridLines: {
+                                    drawBorder: false,
+                                    zeroLineColor: "transparent",
+                                    color: 'rgba(255,255,255,0.05)'
+                                }
+
+                            }],
+
+                            xAxes: [{
+                                barPercentage: 1.6,
+                                gridLines: {
+                                    drawBorder: false,
+                                    color: 'rgba(255,255,255,0.1)',
+                                    zeroLineColor: "transparent"
+                                },
+                                ticks: {
+                                    display: false,
+                                }
+                            }]
+                        },
+                    }
+                });
+
             });
 
-        });
 
-
-    </script>
+        </script>
     @endif
 @endsection

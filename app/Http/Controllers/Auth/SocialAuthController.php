@@ -27,7 +27,7 @@ class SocialAuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest');
+       // $this->middleware('guest');
     }
 
     /**
@@ -147,7 +147,11 @@ class SocialAuthController extends Controller
 
         }
         // check for already has account
-        $user = User::where('email', $providerUser->getEmail())->first();
+        if(!Auth::check()) {
+            $user = User::where('email', $providerUser->getEmail())->first();
+        }else{
+            $user = Auth::user();
+        }
 
         // if user already found
         if ($user) {
@@ -165,19 +169,30 @@ class SocialAuthController extends Controller
                     'public_gist' => $providerUser->user['public_gists'],
                     'followers' => $providerUser->user['followers'],
                 ]);
+                if(Auth::check()) {
+                    $user->update([
+                        'bio' => $user->bio == "" ? $providerUser->user['bio'] : $user->bio,
+                        'website' => $user->website == "" ? $providerUser->user['blog'] : $user->website,
+                        'username' => $user->username == "" ? $providerUser->nickname : $user->username,
+                        'country' => $user->country == "" ? $providerUser->user['location'] : $user->country,
+                        'skills' => $user->skills == "" ? implode(',', $languages) : $user->skills
+                    ]);
+                }
             }
         } else {
             // create a new user
-            $user = User::create([
-                'name' => $providerUser->getName(),
-                'email' => $providerUser->getEmail(),
-                'avatar' => $providerUser->getAvatar(),
-                'provider' => $driver,
-                'provider_id' => $providerUser->getId(),
-                'access_token' => $providerUser->token,
-                // user can use reset password to create a password
-                'password' => ''
-            ]);
+            if(!Auth::check()) {
+                $user = User::create([
+                    'name' => $providerUser->getName(),
+                    'email' => $providerUser->getEmail(),
+                    'avatar' => $providerUser->getAvatar(),
+                    'provider' => $driver,
+                    'provider_id' => $providerUser->getId(),
+                    'access_token' => $providerUser->token,
+                    // user can use reset password to create a password
+                    'password' => ''
+                ]);
+            }
             if ($driver == 'github') {
                 $user->update([
                     'github' => $providerUser->user['html_url'],
@@ -202,9 +217,13 @@ class SocialAuthController extends Controller
         }
 
         // login the user
-        Auth::login($user, true);
 
-        return $this->sendSuccessResponse();
+        if(Auth::check()) {
+            return redirect()->route('profile.show');
+        }else {
+            Auth::login($user, true);
+            return $this->sendSuccessResponse();
+        }
     }
 
     /**
@@ -215,5 +234,6 @@ class SocialAuthController extends Controller
     protected function sendSuccessResponse()
     {
         return redirect()->intended('home');
+
     }
 }

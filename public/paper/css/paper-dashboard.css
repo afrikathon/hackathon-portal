@@ -710,6 +710,11 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
   background-color: #51cbce;
   color: #FFFFFF;
 }
+.btn-black {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+}
+
 
 .btn-primary:hover,
 .btn-primary:focus,

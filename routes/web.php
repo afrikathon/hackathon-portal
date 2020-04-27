@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use TCG\Voyager\Facades\Voyager;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,8 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::get('/home', function () {
+        return Voyager::view('voyager::index');
+    })->name('voyager.dashboard');
 });
+
