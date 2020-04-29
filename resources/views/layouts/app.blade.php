@@ -68,7 +68,7 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
     <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet"/>
-
+    @yield('style')
 </head>
 
 <body class="{{ $class }}">
