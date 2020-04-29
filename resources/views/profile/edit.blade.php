@@ -254,7 +254,7 @@
                                                     name="location" type="text"
                                                     placeholder="{{ __('Twitter URL') }}"
                                                     value="{{ old('twitter', auth()->user()->twitter) }}"/>
-                                                @if ($errors->has('twitter'))
+                                                @if ($errors->has('twitter'))d
                                                     <span id="twitter-error" class="error text-danger"
                                                           for="input-twitter">{{ $errors->first('twitter') }}</span>
                                                 @endif

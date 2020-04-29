@@ -28,6 +28,7 @@
                                 </p>
                                 <div class="content">
 
+
                                     GETTING STARTED:
                                     <ol>
                                         <li>To be able to create teams, you need to complete the <a
@@ -42,6 +43,7 @@
                                         <!-- <li>For more information send an email to <a href="mailto:hackers@afrikathon.org">hackers@afrikathon.org</a></li> -->
 
                                     </ol>
+
 
                                 </div>
 

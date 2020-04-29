@@ -10,9 +10,9 @@
                 <div class="col-lg-5 col-md-5 ml-auto">
                     <div class="info-area info-horizontal mt-5">
                         <div class="description">
-                            <img src="https://afrikathon.org/wp-content/uploads/2020/04/logo-white.png">
+                            <img src="https://afrikathon.org/wp-content/uploads/2020/04/logo-white.png" width="70%">
                             <h2 class="description">
-
+				Registration Deadline : May 04, 2020
                             </h2>
                         </div>
                     </div>
@@ -211,7 +211,9 @@
                                                type="checkbox">
                                         <span class="form-check-sign"></span>
                                         {{ __('I agree to the') }}
+
                                         <a target="_blank" href="https://afrikathon.org/tandc">{{ __('terms and conditions') }}</a>.
+
                                     </label>
                                     @if ($errors->has('agree_terms_and_conditions'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
