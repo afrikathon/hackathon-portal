@@ -21,7 +21,8 @@
                             @csrf
                             <div class="modal-body">
                                 <img class="img img-fluid" src="{{asset('img/badge.png')}}">
-                                <input type="url" name="badge" value="{{old('bade',auth()->user()->badge)}}" class="form-control" placeholder="Enter Badge URL">
+                                <input type="url" name="badge" value="{{old('bade',auth()->user()->badge)}}"
+                                       class="form-control" placeholder="Enter Badge URL">
                                 @if ($errors->has('badge'))
                                     <span id="name-error" class="error text-danger"
                                           for="input-name">{{ $errors->first('bade') }}</span>
@@ -192,6 +193,7 @@
                                     <a
                                         href="https://instagram.com/afrikathon__" target="_blank">Instagram</a>, and <a
                                         href="https://facebook.com/afrikathon" target="_blank">Facebook</a>
+
                                     Invite your Friends, and spread the word about Afrikathon <span role="img"
                                                                                                     aria-label="">🚀</span>
                                     using <strong>Hashtags #OpportunityHackathon #Afrikathon2020</strong>
@@ -211,7 +213,7 @@
                                         <li>For more information please check our <a href="https://afrikathon.org/faqs"
                                                                                      target="_blank">FAQS</a> section
                                         </li>
-                                        <!-- <li>For more information send an email to <a href="mailto:hackers@afrikathon.org">hackers@afrikathon.org</a></li> -->
+                                        <!-- <li>For more information send an email to <a href="mailto:hello@afrikathon.org">hello@afrikathon.org</a></li> -->
 
                                     </ol>
 
@@ -227,8 +229,10 @@
                                                 @csrf
                                                 <div class="modal-body">
 
-                                                    <input type="url" name="badge" required class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                           placeholder="Enter Badge URL" value="{{old('bade',auth()->user()->badge)}}">
+                                                    <input type="url" name="badge" required
+                                                           class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                           placeholder="Enter Badge URL"
+                                                           value="{{old('bade',auth()->user()->badge)}}">
                                                     @if ($errors->has('badge'))
                                                         <span id="name-error" class="error text-danger"
                                                               for="input-name">{{ $errors->first('bade') }}</span>
