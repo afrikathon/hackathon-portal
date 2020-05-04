@@ -155,10 +155,12 @@
                                 <p class="EarlyAdopterDashboardHeader__Description-sc-3we3hz-3 decjzA">You will
                                     receive instructions via email to verify your account, and how to proceed with
                                     the challenge.
+
                                     While you're at it, please follow us on <a target="_blank"
                                         href="https://twitter.com/afrikathon">Twitter</a>, <a
                                         href="https://instagram.com/afrikathon__" target="_blank">Instagram</a>, and <a
                                         href="https://facebook.com/afrikathon" target="_blank">Facebook</a>
+
                                     Invite your Friends, and spread the word about Afrikathon <span role="img"
                                                                                                     aria-label="">🚀</span>
                                     using <strong>Hashtags #OpportunityHackathon #Afrikathon2020</strong>
@@ -178,7 +180,7 @@
                                         <li>For more information please check our <a href="https://afrikathon.org/faqs"
                                                                                      target="_blank">FAQS</a> section
                                         </li>
-                                        <!-- <li>For more information send an email to <a href="mailto:hackers@afrikathon.org">hackers@afrikathon.org</a></li> -->
+                                        <!-- <li>For more information send an email to <a href="mailto:hello@afrikathon.org">hello@afrikathon.org</a></li> -->
 
                                     </ol>
 
