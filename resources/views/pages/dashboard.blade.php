@@ -28,14 +28,22 @@
                                 </p>
                                 <div class="content">
 
-			GETTING STARTED:
-<ol>
-<li>To be able to create teams, you need to complete the <a href="https://www.ibm.com/design/thinking/page/courses/Practitioner" target="_blank">IBM Design Thinking Practitioner Course</a> </li>
-<li>Team creation will happen live after registration is closed, so you don't necessarily need to recruit a team mate. </li>
-<li>For more information please check our <a href="https://afrikathon.org/faqs" target="_blank">FAQS</a> section </li>
-<!-- <li>For more information send an email to <a href="mailto:hackers@afrikathon.org">hackers@afrikathon.org</a></li> -->
 
-</ol>
+                                    GETTING STARTED:
+                                    <ol>
+                                        <li>To be able to create teams, you need to complete the <a
+                                                href="https://www.ibm.com/design/thinking/page/courses/Practitioner"
+                                                target="_blank">IBM Design Thinking Practitioner Course</a></li>
+                                        <li>Team creation will happen live after registration is closed, so you don't
+                                            necessarily need to recruit a team mate.
+                                        </li>
+                                        <li>For more information please check our <a href="https://afrikathon.org/faqs"
+                                                                                     target="_blank">FAQS</a> section
+                                        </li>
+                                        <!-- <li>For more information send an email to <a href="mailto:hackers@afrikathon.org">hackers@afrikathon.org</a></li> -->
+
+                                    </ol>
+
 
                                 </div>
 

@@ -6,226 +6,375 @@
 @section('content')
     <div class="content">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card card-user">
-                    <div class="image">
-                        <img src="{{ asset('img/logo_l.jpg') }}" alt="...">
-                    </div>
-                    <div class="card-body">
-                        <div class="author">
-
-                            <img class="avatar border-gray" src="{{ auth()->user()->avatar}}" alt="...">
-
-
-                            <h5 class="title mb-0">{{ __(auth()->user()->name)}}</h5>
-                            <p class="mb-0">{{ __(auth()->user()->email)}}</p>
-
-                            <p class="description mb-0">
-                                <i class="fa fa-marker"></i> {{ __(auth()->user()->city)}},{{auth()->user()->country}}
-                            </p>
-                            <p class="description mb-0">
-                                {{ __(auth()->user()->bio)}}
-                            </p>
-
-                            <div class="social">
-                                @if(auth()->user()->github != "")
-                                    <a href="{{ auth()->user()->github }}" target="_blank"
-                                       class="btn btn-icon btn-round btn-gtihub">
-                                        <i class="fa fa-github"></i>
-                                    </a>
-                                @endif
-                                @if(auth()->user()->linkedin != "")
-                                    <a href="{{ auth()->user()->linkedin }}"
-                                       target="_blank"
-                                       class="btn btn-icon btn-round btn-twitter">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                @endif
-                                @if(auth()->user()->twitter != "")
-                                    <a href="{{ auth()->user()->twitter }}"
-                                       target="_blank"
-                                       class="btn btn-icon btn-round btn-twitter">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                @endif
-                                @if(auth()->user()->facebook != "")
-                                    <a href="{{auth()->user()->facebook }}"
-                                       target="_blank"
-                                       class="btn btn-icon btn-round btn-facebook">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                @endif
-                                @if(auth()->user()->website != "")
-                                    <a href="{{auth()->user()->website }}"
-                                       target="_blank"
-                                       class="btn btn-icon btn-round btn-dribbble">
-                                        <i class="fa fa-globe"></i>
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                        <p class="description text-center">
-
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card">
-
-                    <div class="card-body">
-
-
-                        <h4 class="card-title">{{ __('Technical Skills') }}
-                            <span> <a href="{{ route('social.oauth', 'github') }}"
-                                      class="pull-right btn btn-github btn-sm" style="margin: 0; font-size: small ">
-                                    <i class="fa fa-github" style="font-size: large "></i> Update with Github
+            <div class="col-md-12">
+                <form method="post" action="{{ route('profile.update') }}" class="form-horizontal" autocomplete="off"
+                      enctype="multipart/form-data">
+                    @csrf
+                    @method('put')
+                    <div class=" card card-user">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">{{ __('Edit Profile') }}
+                                <span> <a href="{{ route('social.oauth', 'github') }}"
+                                          class="pull-right btn btn-primary btn-sm"
+                                          style="margin: 0; font-size: small ">
+                                    <img src="https://pngimg.com/uploads/github/github_PNG20.png" width="30px"> Update with Github
                                     </a></span>
-                        </h4>
-                        <p> {{auth()->user()->skills}}</p>
-                        <br>
-                        <h4 class="card-title">{{ __('Language Activity') }} <img src="{{asset('img/github.png')}}"
-                                                                                  style="width: 100px"></h4>
-                        <canvas id="chartEmail"></canvas>
-                    </div>
-                    <div class="card-footer">
-                        <hr>
-                        <div class="button-container">
+
+                            </h4>
+                        </div>
+                        <div class="card-body">
+
+                            @if (session('status'))
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-success">
+                                            <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                            <span>{{ session('status') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="row">
-                                <div class="col-lg-3 col-md-6 col-6 ml-auto">
-                                    <h5>{{auth()->user()->public_repos}}
-                                        <br>
-                                        <small>{{ __('Public Repos') }}</small>
-                                    </h5>
+                                <div class="col-md-3">
+                                    <div class="row pull-right">
+                                        <div class="text-center">
+                                            <div class="kv-avatar">
+                                                <div class="file-loading">
+                                                    <input id="avatar-1" name="avatar" type="file">
+                                                </div>
+                                            </div>
+                                            <div class="kv-avatar-hint">
+                                                <small>Select file < 1500 KB</small>
+                                            </div>
+                                        </div>
+                                        <div id="kv-avatar-errors-1" class="center-block"
+                                             style="width:800px;display:none"></div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-                                    <h5>{{ auth()->user()->followers }}
-                                        <br>
-                                        <small>{{ __('Followers') }}</small>
-                                    </h5>
-                                </div>
-                                <div class="col-lg-3 mr-auto">
-                                    <h5>{{ auth()->user()->public_gist }}
-                                        <br>
-                                        <small>{{ __('Gist') }}</small>
-                                    </h5>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                    name="name" id="input-name" type="text"
+                                                    placeholder="{{ __('Name') }}"
+                                                    value="{{ old('name', auth()->user()->name) }}"
+                                                    required="true"
+                                                    aria-required="true"/>
+                                                @if ($errors->has('name'))
+                                                    <span id="name-error" class="error text-danger"
+                                                          for="input-name">{{ $errors->first('name') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                    name="email" id="input-email" type="text"
+                                                    placeholder="{{ __('Email') }}"
+                                                    value="{{ old('email', auth()->user()->email) }}"
+                                                    required="true"
+                                                    aria-required="true"/>
+                                                @if ($errors->has('email'))
+                                                    <span id="email-error" class="error text-danger"
+                                                          for="input-email">{{ $errors->first('email') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
+                                                    name="username" id="input-username" type="text"
+                                                    placeholder="{{ __('Username') }}"
+                                                    value="{{ old('email', auth()->user()->username) }}"
+                                                    required="true"
+                                                    aria-required="true"/>
+                                                @if ($errors->has('username'))
+                                                    <span id="username-error" class="error text-danger"
+                                                          for="input-username">{{ $errors->first('username') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div
+                                                class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                                                    name="phone" type="text" placeholder="{{ __('phone') }}"
+                                                    value="{{ old('phone', auth()->user()->phone) }}"/>
+                                                @if ($errors->has('phone'))
+                                                    <span id="email-error" class="error text-danger"
+                                                          for="input-email">{{ $errors->first('phone') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div
+                                                class="form-group{{ $errors->has('country') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}"
+                                                    name="country" type="text"
+                                                    placeholder="{{ __('Country') }}"
+                                                    value="{{ old('country', auth()->user()->country) }}"/>
+                                                @if ($errors->has('country'))
+                                                    <span id="country-error" class="error text-danger"
+                                                          for="input-country">{{ $errors->first('country') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div
+                                                class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
+                                                    name="city" type="text"
+                                                    placeholder="{{ __('City') }}"
+                                                    value="{{ old('city', auth()->user()->city) }}"/>
+                                                @if ($errors->has('city'))
+                                                    <span id="city-error" class="error text-danger"
+                                                          for="input-city">{{ $errors->first('city') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div
+                                                class="form-group{{ $errors->has('job_role') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('job_role') ? ' is-invalid' : '' }}"
+                                                    name="job_role" type="text"
+                                                    placeholder="{{ __('Role e.g UX/UI Engineer, Full Stuck Developer') }}"
+                                                    value="{{ old('job_role', auth()->user()->job_role) }}"/>
+                                                @if ($errors->has('job_role'))
+                                                    <span id="email-error" class="error text-danger"
+                                                          for="input-email">{{ $errors->first('job_role') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div
+                                                class="form-group{{ $errors->has('experience') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('experience') ? ' is-invalid' : '' }}"
+                                                    name="experience" type="text"
+                                                    placeholder="{{ __('Years of Experience') }}"
+                                                    value="{{ old('experience', auth()->user()->experience) }}"/>
+                                                @if ($errors->has('experience'))
+                                                    <span id="experience-error" class="error text-danger"
+                                                          for="input-experience">{{ $errors->first('experience') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div
+                                                class="form-group{{ $errors->has('website') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('website') ? ' is-invalid' : '' }}"
+                                                    name="website" type="text"
+                                                    placeholder="{{ __('Portfolio/ Website') }}"
+                                                    value="{{ old('website', auth()->user()->website) }}"/>
+                                                @if ($errors->has('website'))
+                                                    <span id="website-error" class="error text-danger"
+                                                          for="input-website">{{ $errors->first('website') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div
+                                                class="form-group{{ $errors->has('github') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('github') ? ' is-invalid' : '' }}"
+                                                    name="github" type="text" placeholder="{{ __('Github URL') }}"
+                                                    value="{{ old('github', auth()->user()->github) }}"/>
+                                                @if ($errors->has('github'))
+                                                    <span id="email-error" class="error text-danger"
+                                                          for="input-email">{{ $errors->first('github') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div
+                                                class="form-group{{ $errors->has('linkedin') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('linkedin') ? ' is-invalid' : '' }}"
+                                                    name="linkedin" type="text"
+                                                    placeholder="{{ __('Linkedin URL') }}"
+                                                    value="{{ old('linkedin', auth()->user()->linkedin) }}"/>
+                                                @if ($errors->has('linkedin'))
+                                                    <span id="linkedin-error" class="error text-danger"
+                                                          for="input-linkedin">{{ $errors->first('linkedin') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div
+                                                class="form-group{{ $errors->has('facebook') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('facebook') ? ' is-invalid' : '' }}"
+                                                    name="facebook" type="text"
+                                                    placeholder="{{ __('Facebook URL') }}"
+                                                    value="{{ old('facebook', auth()->user()->facebook) }}"/>
+                                                @if ($errors->has('facebook'))
+                                                    <span id="facebook-error" class="error text-danger"
+                                                          for="input-facebook">{{ $errors->first('facebook') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div
+                                                class="form-group{{ $errors->has('twitter') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('twitter') ? ' is-invalid' : '' }}"
+                                                    name="twitter" type="text"
+                                                    placeholder="{{ __('Twitter URL') }}"
+                                                    value="{{ old('twitter', auth()->user()->twitter) }}"/>
+                                                @if ($errors->has('twitter'))
+                                                    <span id="twitter-error" class="error text-danger"
+                                                          for="input-twitter">{{ $errors->first('twitter') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div
+                                                class="form-group{{ $errors->has('bio') ? ' has-danger' : '' }}">
+                                                <textarea
+                                                    class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}"
+                                                    name="bio" type="text"
+                                                    placeholder="{{ __('Bio') }}">{{ old('bio', auth()->user()->bio) }}</textarea>
+                                                @if ($errors->has('bio'))
+                                                    <span id="email-error" class="error text-danger"
+                                                          for="input-email">{{ $errors->first('bio') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div
+                                                class="form-group{{ $errors->has('skills') ? ' has-danger' : '' }}">
+                                                <input type="text"
+                                                       class="tagsinput form-control {{ $errors->has('skills') ? ' is-invalid' : '' }}"
+                                                       name="skills" type="text"
+                                                       placeholder="{{ __('Technical Skills') }}"
+                                                       value="{{ old('skills', auth()->user()->skills) }}"
+                                                       data-role="tagsinput"
+                                                       data-color="danger">
+                                                @if ($errors->has('skills'))
+                                                    <span id="email-error" class="error text-danger"
+                                                          for="input-email">{{ $errors->first('skills') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
+
+
+                        </div>
+                        <div class="card-footer ml-auto mr-auto">
+                            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
+
         </div>
     </div>
 @endsection
 @section('scripts')
-    @if(auth()->user()->languages != "" )
-        @php
-            $lang_count = sizeof(unserialize(auth()->user()->languages) );
-        $i = 0;
-        @endphp
-        <script>
-            $(document).ready(function () {
+    <script src="{{asset('js/plugins/piexif.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/plugins/sortable.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/fileinput.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/locales/fr.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/locales/es.js')}}" type="text/javascript"></script>
+    <script src="{{asset('themes/fas/theme.js')}}" type="text/javascript"></script>
+    <script src="{{asset('themes/explorer-fas/theme.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/bootstrap-tagsinput.js')}}" type="text/javascript"></script>
 
-                const ctx = document.getElementById('chartEmail').getContext("2d");
+    <!-- the fileinput plugin initialization -->
+    <script>
+        $("#avatar-1").fileinput({
+            theme: 'fas',
+            overwriteInitial: true,
+            maxFileSize: 1500,
+            showClose: false,
+            showCaption: false,
+            browseLabel: '',
+            removeLabel: '',
+            browseIcon: '<i class="fa fa-folder-open"></i>',
+            removeIcon: '<i class="fa fa-trash"></i>',
+            removeTitle: 'Cancel or reset changes',
+            elErrorContainer: '#kv-avatar-errors-1',
+            msgErrorClass: 'alert alert-block alert-danger',
+            defaultPreviewContent: '<img  style="width: 200px" src="{{Auth::user()->avatar}}" alt="Your Avatar">',
+            layoutTemplates: {main2: '{preview}  {remove} {browse}'},
+            allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+    </script>
+@endsection
+@section('style')
+    <link href="{{asset('css/fileinput.css')}}" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+    <link href="{{asset('themes/explorer-fas/theme.css')}}" media="all" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('css/bootstrap-tagsinput.css')}}" media="all" rel="stylesheet" type="text/css"/>
+    <style>
+        .kv-avatar .krajee-default.file-preview-frame, .kv-avatar .krajee-default.file-preview-frame:hover {
+            margin: 0;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+            text-align: center;
+        }
 
-                myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: [
-                            @foreach(unserialize(auth()->user()->languages) as $lang=>$count)
-                                @php
-                                    $i++;
-                                @endphp
-                                '{{$lang}}'
-                            @if($i != $lang_count  )
-                            ,
-                            @endif
-                            @endforeach
-                        ],
-                        datasets: [{
-                            label: "Emails",
-                            pointRadius: 0,
-                            pointHoverRadius: 4,
-                            backgroundColor: [
-                                '#71cd4a',
-                                '#4acccd',
-                                '#fcc468',
-                                '#ef8157',
-                                '#e3e3e3',
-                                '#cd4a4a',
-                                '#0039ff',
-                                '#fff100',
-                                '#000000',
-                                '#c700ff'
-                            ],
-                            borderWidth: 0,
-                            data: [
-                                @foreach(unserialize(auth()->user()->languages) as $lang=>$count)
-                                    @php
-                                        $i--;
-                                    @endphp
-                                    '{{$count}}'
-                                @if($i != 0 )
-                                ,
-                                @endif
-                                @endforeach
-                            ]
-                        }]
-                    },
+        .kv-avatar {
+            display: inline-block;
+        }
 
-                    options: {
+        .kv-avatar .file-input {
+            display: table-cell;
+            width: 213px;
+        }
 
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        },
-                        title: {
-                            display: true
-                        },
+        .kv-reqd {
+            color: red;
+            font-family: monospace;
+            font-weight: normal;
+        }
 
-                        pieceLabel: {
-                            render: 'percentage',
-                            fontColor: ['white'],
-                            precision: 2
-                        },
-
-                        tooltips: {
-                            enabled: true
-                        },
-
-                        scales: {
-                            yAxes: [{
-
-                                ticks: {
-                                    display: false
-                                },
-                                gridLines: {
-                                    drawBorder: false,
-                                    zeroLineColor: "transparent",
-                                    color: 'rgba(255,255,255,0.05)'
-                                }
-
-                            }],
-
-                            xAxes: [{
-                                barPercentage: 1.6,
-                                gridLines: {
-                                    drawBorder: false,
-                                    color: 'rgba(255,255,255,0.1)',
-                                    zeroLineColor: "transparent"
-                                },
-                                ticks: {
-                                    display: false,
-                                }
-                            }]
-                        },
-                    }
-                });
-
-            });
+        .bootstrap-tagsinput .tag {
+            border-color: #6bd098;
+            background-color: #6bd098;
+            transition: all .17s linear;
+            cursor: pointer;
+            margin: 5px 3px 5px 0;
+            position: relative;
+            padding: 4px 8px 3px .8em;
+            border-radius: 12px;
+            color: #fff;
+            font-size: .75em;
+            font-weight: 500;
+            display: inline-block;
+            line-height: 1.5em;
+            text-transform: uppercase;
+        }
 
 
-        </script>
-    @endif
+    </style>
 @endsection
