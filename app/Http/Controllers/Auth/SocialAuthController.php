@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeMail;
 use App\User;
 use eadortsu\GraphQL\Facades\Client;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
@@ -222,6 +224,7 @@ class SocialAuthController extends Controller
             return redirect()->route('profile.show');
         }else {
             Auth::login($user, true);
+            Mail::to($user)->send(new WelcomeMail($user));
             return $this->sendSuccessResponse();
         }
     }
