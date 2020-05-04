@@ -110,7 +110,7 @@
                                                 <input
                                                     class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
                                                     name="phone" type="text" placeholder="{{ __('phone') }}"
-                                                    value="{{ old('phone', auth()->user()->phone) }}" required/>
+                                                    value="{{ old('phone', auth()->user()->phone) }}"/>
                                                 @if ($errors->has('phone'))
                                                     <span id="email-error" class="error text-danger"
                                                           for="input-email">{{ $errors->first('phone') }}</span>
@@ -136,7 +136,7 @@
                                                 class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
                                                 <input
                                                     class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}"
-                                                    name="location" type="text"
+                                                    name="city" type="text"
                                                     placeholder="{{ __('City') }}"
                                                     value="{{ old('city', auth()->user()->city) }}"/>
                                                 @if ($errors->has('city'))
@@ -147,13 +147,58 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-md-4">
+                                            <div
+                                                class="form-group{{ $errors->has('job_role') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('job_role') ? ' is-invalid' : '' }}"
+                                                    name="job_role" type="text"
+                                                    placeholder="{{ __('Role e.g UX/UI Engineer, Full Stuck Developer') }}"
+                                                    value="{{ old('job_role', auth()->user()->job_role) }}"/>
+                                                @if ($errors->has('job_role'))
+                                                    <span id="email-error" class="error text-danger"
+                                                          for="input-email">{{ $errors->first('job_role') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div
+                                                class="form-group{{ $errors->has('experience') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('experience') ? ' is-invalid' : '' }}"
+                                                    name="experience" type="text"
+                                                    placeholder="{{ __('Years of Experience') }}"
+                                                    value="{{ old('experience', auth()->user()->experience) }}"/>
+                                                @if ($errors->has('experience'))
+                                                    <span id="experience-error" class="error text-danger"
+                                                          for="input-experience">{{ $errors->first('experience') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div
+                                                class="form-group{{ $errors->has('website') ? ' has-danger' : '' }}">
+                                                <input
+                                                    class="form-control{{ $errors->has('website') ? ' is-invalid' : '' }}"
+                                                    name="website" type="text"
+                                                    placeholder="{{ __('Portfolio/ Website') }}"
+                                                    value="{{ old('website', auth()->user()->website) }}"/>
+                                                @if ($errors->has('website'))
+                                                    <span id="website-error" class="error text-danger"
+                                                          for="input-website">{{ $errors->first('website') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-3">
                                             <div
                                                 class="form-group{{ $errors->has('github') ? ' has-danger' : '' }}">
                                                 <input
                                                     class="form-control{{ $errors->has('github') ? ' is-invalid' : '' }}"
                                                     name="github" type="text" placeholder="{{ __('Github URL') }}"
-                                                    value="{{ old('github', auth()->user()->github) }}" required/>
+                                                    value="{{ old('github', auth()->user()->github) }}"/>
                                                 @if ($errors->has('github'))
                                                     <span id="email-error" class="error text-danger"
                                                           for="input-email">{{ $errors->first('github') }}</span>
@@ -179,7 +224,7 @@
                                                 class="form-group{{ $errors->has('facebook') ? ' has-danger' : '' }}">
                                                 <input
                                                     class="form-control{{ $errors->has('facebook') ? ' is-invalid' : '' }}"
-                                                    name="location" type="text"
+                                                    name="facebook" type="text"
                                                     placeholder="{{ __('Facebook URL') }}"
                                                     value="{{ old('facebook', auth()->user()->facebook) }}"/>
                                                 @if ($errors->has('facebook'))
@@ -193,7 +238,7 @@
                                                 class="form-group{{ $errors->has('twitter') ? ' has-danger' : '' }}">
                                                 <input
                                                     class="form-control{{ $errors->has('twitter') ? ' is-invalid' : '' }}"
-                                                    name="location" type="text"
+                                                    name="twitter" type="text"
                                                     placeholder="{{ __('Twitter URL') }}"
                                                     value="{{ old('twitter', auth()->user()->twitter) }}"/>
                                                 @if ($errors->has('twitter'))
@@ -204,90 +249,36 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div
-                                                class="form-group{{ $errors->has('job_role') ? ' has-danger' : '' }}">
-                                                <input
-                                                    class="form-control{{ $errors->has('job_role') ? ' is-invalid' : '' }}"
-                                                    name="job_role" type="text" placeholder="{{ __('Role e.g UX/UI Engineer, Full Stuck Developer') }}"
-                                                    value="{{ old('job_role', auth()->user()->job_role) }}" required/>
-                                                @if ($errors->has('job_role'))
-                                                    <span id="email-error" class="error text-danger"
-                                                          for="input-email">{{ $errors->first('job_role') }}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div
-                                                class="form-group{{ $errors->has('experience') ? ' has-danger' : '' }}">
-                                                <input
-                                                    class="form-control{{ $errors->has('experience') ? ' is-invalid' : '' }}"
-                                                    name="experience" type="text"
-                                                    placeholder="{{ __('Years of Experience') }}"
-                                                    value="{{ old('experience', auth()->user()->experience) }}"/>
-                                                @if ($errors->has('experience'))
-                                                    <span id="experience-error" class="error text-danger"
-                                                          for="input-experience">{{ $errors->first('experience') }}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div
-                                                class="form-group{{ $errors->has('website') ? ' has-danger' : '' }}">
-                                                <input
-                                                    class="form-control{{ $errors->has('website') ? ' is-invalid' : '' }}"
-                                                    name="location" type="text"
-                                                    placeholder="{{ __('Portfolio/ Website') }}"
-                                                    value="{{ old('website', auth()->user()->website) }}"/>
-                                                @if ($errors->has('website'))
-                                                    <span id="website-error" class="error text-danger"
-                                                          for="input-website">{{ $errors->first('website') }}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div
-                                                class="form-group{{ $errors->has('twitter') ? ' has-danger' : '' }}">
-                                                <input
-                                                    class="form-control{{ $errors->has('twitter') ? ' is-invalid' : '' }}"
-                                                    name="location" type="text"
-                                                    placeholder="{{ __('Twitter URL') }}"
-                                                    value="{{ old('twitter', auth()->user()->twitter) }}"/>
-                                                @if ($errors->has('twitter'))d
-                                                    <span id="twitter-error" class="error text-danger"
-                                                          for="input-twitter">{{ $errors->first('twitter') }}</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                                    <div
-                                                        class="form-group{{ $errors->has('bio') ? ' has-danger' : '' }}">
+                                            <div
+                                                class="form-group{{ $errors->has('bio') ? ' has-danger' : '' }}">
                                                 <textarea
                                                     class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}"
-                                                    name="bio" type="text" placeholder="{{ __('Bio') }}"
-                                                    value="{{ old('bio', auth()->user()->bio) }}"></textarea>
-                                                        @if ($errors->has('bio'))
-                                                            <span id="email-error" class="error text-danger"
-                                                                  for="input-email">{{ $errors->first('bio') }}</span>
-                                                        @endif
-                                                    </div>
+                                                    name="bio" type="text"
+                                                    placeholder="{{ __('Bio') }}">{{ old('bio', auth()->user()->bio) }}</textarea>
+                                                @if ($errors->has('bio'))
+                                                    <span id="email-error" class="error text-danger"
+                                                          for="input-email">{{ $errors->first('bio') }}</span>
+                                                @endif
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                                    <div
-                                                        class="form-group{{ $errors->has('skills') ? ' has-danger' : '' }}">
-                                                <textarea
-                                                    class="form-control{{ $errors->has('skills') ? ' is-invalid' : '' }}"
-                                                    name="skills" type="text" placeholder="{{ __('Bio') }}"
-                                                    value="{{ old('skills', auth()->user()->skills) }}"></textarea>
-                                                        @if ($errors->has('skills'))
-                                                            <span id="email-error" class="error text-danger"
-                                                                  for="input-email">{{ $errors->first('skills') }}</span>
-                                                        @endif
-                                                    </div>
+                                            <div
+                                                class="form-group{{ $errors->has('skills') ? ' has-danger' : '' }}">
+                                                <input type="text"
+                                                       class="tagsinput form-control {{ $errors->has('skills') ? ' is-invalid' : '' }}"
+                                                       name="skills" type="text"
+                                                       placeholder="{{ __('Technical Skills') }}"
+                                                       value="{{ old('skills', auth()->user()->skills) }}"
+                                                       data-role="tagsinput"
+                                                       data-color="danger">
+                                                @if ($errors->has('skills'))
+                                                    <span id="email-error" class="error text-danger"
+                                                          for="input-email">{{ $errors->first('skills') }}</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
 
@@ -315,6 +306,7 @@
     <script src="{{asset('js/locales/es.js')}}" type="text/javascript"></script>
     <script src="{{asset('themes/fas/theme.js')}}" type="text/javascript"></script>
     <script src="{{asset('themes/explorer-fas/theme.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/bootstrap-tagsinput.js')}}" type="text/javascript"></script>
 
     <!-- the fileinput plugin initialization -->
     <script>
@@ -341,6 +333,7 @@
     <link href="{{asset('css/fileinput.css')}}" media="all" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
     <link href="{{asset('themes/explorer-fas/theme.css')}}" media="all" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('css/bootstrap-tagsinput.css')}}" media="all" rel="stylesheet" type="text/css"/>
     <style>
         .kv-avatar .krajee-default.file-preview-frame, .kv-avatar .krajee-default.file-preview-frame:hover {
             margin: 0;
@@ -364,5 +357,24 @@
             font-family: monospace;
             font-weight: normal;
         }
+
+        .bootstrap-tagsinput .tag {
+            border-color: #6bd098;
+            background-color: #6bd098;
+            transition: all .17s linear;
+            cursor: pointer;
+            margin: 5px 3px 5px 0;
+            position: relative;
+            padding: 4px 8px 3px .8em;
+            border-radius: 12px;
+            color: #fff;
+            font-size: .75em;
+            font-weight: 500;
+            display: inline-block;
+            line-height: 1.5em;
+            text-transform: uppercase;
+        }
+
+
     </style>
 @endsection
