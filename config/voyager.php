@@ -12,9 +12,9 @@ return [
 
     'user' => [
         'add_default_role_on_register' => true,
-        'default_role'                 => 'user',
-        'default_avatar'               => 'users/default.png',
-        'redirect'                     => '/admin/home',
+        'default_role' => 'user',
+        'default_avatar' => 'users/default.png',
+        'redirect' => '/admin/home',
     ],
 
     /*
@@ -128,17 +128,17 @@ return [
         // Add custom list items to navbar's dropdown
         'navbar_items' => [
             'voyager::generic.profile' => [
-                'route'      => 'voyager.profile',
-                'classes'    => 'class-full-of-rum',
+                'route' => 'voyager.profile',
+                'classes' => 'class-full-of-rum',
                 'icon_class' => 'voyager-person',
             ],
             'voyager::generic.home' => [
-                'route'        => '/',
-                'icon_class'   => 'voyager-home',
+                'route' => '/',
+                'icon_class' => 'voyager-home',
                 'target_blank' => true,
             ],
             'voyager::generic.logout' => [
-                'route'      => 'voyager.logout',
+                'route' => 'voyager.logout',
                 'icon_class' => 'voyager-power',
             ],
         ],
@@ -146,6 +146,10 @@ return [
         'widgets' => [
 
         ],
+        'data_tables' => [
+            "dom" => 'Bfrtip',
+            "buttons" => ['copy', 'excel', 'pdf']
+        ]
 
     ],
 
@@ -188,14 +192,24 @@ return [
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
         //'css/custom.css',
+        'https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css'
     ],
 
     'additional_js' => [
         //'js/custom.js',
+        'https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js',
+        'https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js',
+        'https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js',
+        'https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js',
+        'https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js'
+
     ],
 
     'googlemaps' => [
-        'key'    => env('GOOGLE_MAPS_KEY', ''),
+        'key' => env('GOOGLE_MAPS_KEY', ''),
         'center' => [
             'lat' => env('GOOGLE_MAPS_DEFAULT_CENTER_LAT', '32.715738'),
             'lng' => env('GOOGLE_MAPS_DEFAULT_CENTER_LNG', '-117.161084'),
@@ -234,13 +248,13 @@ return [
         ],
         */
         //Path for media-manager. Relative to the filesystem.
-        'path'                => '/',
-        'show_folders'        => true,
-        'allow_upload'        => true,
-        'allow_move'          => true,
-        'allow_delete'        => true,
+        'path' => '/',
+        'show_folders' => true,
+        'allow_upload' => true,
+        'allow_move' => true,
+        'allow_delete' => true,
         'allow_create_folder' => true,
-        'allow_rename'        => true,
+        'allow_rename' => true,
         /*'watermark'           => [
             'source'         => 'watermark.png',
             'position'       => 'bottom-left',
