@@ -11,18 +11,18 @@
                     <div class="info-area info-horizontal mt-5">
                         <div class="description">
                             <img src="https://afrikathon.org/wp-content/uploads/2020/04/logo-white.png" width="70%">
-                            <h2 class="description">
-				Registration Deadline : May 04, 2020
-                            </h2>
+                            <h3 class="description">
+                                Late Registration Ends : May 08, 2020
+                            </h3>
                         </div>
                     </div>
                     <div class="info-area info-horizontal">
                         <div class="description">
                             <h5 class="info-title">The Opportunity Hackathon</h5>
                             <p class="description">
-                                Rich in diversity and culture, let’s tap into our innermost potential to create the
-                                solutions for our future to make over 400 million talented Africans access to evenly
-                                distributed opportunity.
+                                Signup for our Virtual Event where you’d learn design thinking, form a team across the
+                                continent and build a tech solution to create opportunities for over 400 million
+                                talented Africans and win cool prizes.
                             </p>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                                         </span>
                                     </div>
                                     <select name="country" type="" class="form-control" required>
-                                        <option readonly="" selected>--- Select country ---</option>
+                                        <option readonly disabled selected>--- Select country ---</option>
                                         <option id="DZ" value="Algeria">Algeria</option>
                                         <option id="AO" value="Angola">Angola</option>
                                         <option id="BJ" value="Benin">Benin</option>
@@ -211,7 +211,8 @@
                                                type="checkbox">
                                         <span class="form-check-sign"></span>
                                         {{ __('I agree to the') }}
-                                        <a href="https://afrikathon.org/tandc" target="_blank">{{ __('terms and conditions') }}</a>.
+                                        <a href="https://afrikathon.org/tandc"
+                                           target="_blank">{{ __('terms and conditions') }}</a>.
                                     </label>
                                     @if ($errors->has('agree_terms_and_conditions'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">

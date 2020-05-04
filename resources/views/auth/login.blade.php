@@ -20,9 +20,8 @@
                         <div class="description">
                             <h5 class="info-title">The Opportunity Hackathon</h5>
                             <p class="description">
-                                Rich in diversity and culture, let’s tap into our innermost potential to create the
-                                solutions for our future to make over 400 million talented Africans access to evenly
-                                distributed opportunity.
+                                Afrikathon is the Largest Pan African Hackathon on a mission to evolve the next
+                                generation of learners, and inventors in Africa using hackathons
                             </p>
                         </div>
                     </div>
@@ -30,13 +29,16 @@
 
                         <div class="description">
                             <div class="social">
-                                <a href="https://twitter.com/afrikathon" target="_blank" class="btn btn-icon btn-round btn-twitter">
+                                <a href="https://twitter.com/afrikathon" target="_blank"
+                                   class="btn btn-icon btn-round btn-twitter">
                                     <i class="fa fa-twitter"></i>
                                 </a>
-                                <a href="https://www.facebook.com/afrikathon" target="_blank" class="btn btn-icon btn-round btn-facebook">
+                                <a href="https://www.facebook.com/afrikathon" target="_blank"
+                                   class="btn btn-icon btn-round btn-facebook">
                                     <i class="fa fa-facebook"></i>
                                 </a>
-                                <a href="https://www.instagram.com/afrikathon__/" target="_blank" class="btn btn-icon btn-round btn-dribbble">
+                                <a href="https://www.instagram.com/afrikathon__/" target="_blank"
+                                   class="btn btn-icon btn-round btn-dribbble">
                                     <i class="fa fa-instagram"></i>
                                 </a>
                             </div>
@@ -52,12 +54,12 @@
                                    class="btn btn-github">
                                     <i class="fa fa-github"></i> Login with Github
                                 </a>
-                               {{-- <a href="{{ route('social.oauth', 'google') }}" class="btn btn-icon btn-round btn-twitter">
-                                    <i class="fa fa-google"></i>
-                                </a>
-                                <a href="{{ route('social.oauth', 'linked') }}" class="btn btn-icon btn-round btn-facebook">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>--}}
+                                {{-- <a href="{{ route('social.oauth', 'google') }}" class="btn btn-icon btn-round btn-twitter">
+                                     <i class="fa fa-google"></i>
+                                 </a>
+                                 <a href="{{ route('social.oauth', 'linked') }}" class="btn btn-icon btn-round btn-facebook">
+                                     <i class="fa fa-linkedin"></i>
+                                 </a>--}}
                                 <p class="card-description">{{ __('or be classical') }}</p>
                             </div>
                         </div>
