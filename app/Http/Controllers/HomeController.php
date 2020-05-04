@@ -125,7 +125,7 @@ class HomeController extends Controller
 
         $client = new \GuzzleHttp\Client();
         try {
-            $response = $client->request('GET',  $request->badge);
+            $response = $client->request('GET',  'https://api.youracclaim.com/v1/obi/v2/badge_assertions/'. Str::between($request->badge,'https://www.youracclaim.com/badges/','/public_url'));
 
             $res = json_decode($response->getBody(), true); // '{"id": 1420053, "name": "guzzle", ...}'
 
