@@ -18,7 +18,7 @@
                                     receive instructions via email to verify your account, and how to proceed with
                                     the challenge.
                                     While you're at it, please follow us on <a
-                                        href="https://twitter.com">Twitter</a>, <a
+                                        href="https://twitter.com/afrikathon">Twitter</a>, <a
                                         href="https://instagram.com/afrikathon__">Instagram</a>, and <a
                                         href="https://facebook.com/afrikathon">Facebook</a>
                                     Invite your Friends, and spread the word about Afrikathon <span role="img"
@@ -40,7 +40,7 @@
                                         <li>For more information please check our <a href="https://afrikathon.org/faqs"
                                                                                      target="_blank">FAQS</a> section
                                         </li>
-                                        <!-- <li>For more information send an email to <a href="mailto:hackers@afrikathon.org">hackers@afrikathon.org</a></li> -->
+                                        <!-- <li>For more information send an email to <a href="mailto:hello@afrikathon.org">hello@afrikathon.org</a></li> -->
 
                                     </ol>
 
