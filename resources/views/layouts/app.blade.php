@@ -61,7 +61,7 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
     <!--     Fonts and icons     -->
-   {{-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>--}}
+    {{-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>--}}
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <!-- CSS Files -->
     <link href="{{ asset('paper') }}/css/bootstrap.min.css" rel="stylesheet"/>
@@ -100,7 +100,38 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
 
 @stack('scripts')
 @yield('scripts')
-
+<script>
+    !function () {
+        var analytics = window.analytics = window.analytics || [];
+        if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+            analytics.invoked = !0;
+            analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addDestinationMiddleware"];
+            analytics.factory = function (e) {
+                return function () {
+                    var t = Array.prototype.slice.call(arguments);
+                    t.unshift(e);
+                    analytics.push(t);
+                    return analytics
+                }
+            };
+            for (var e = 0; e < analytics.methods.length; e++) {
+                var t = analytics.methods[e];
+                analytics[t] = analytics.factory(t)
+            }
+            analytics.load = function (e, t) {
+                var n = document.createElement("script");
+                n.type = "text/javascript";
+                n.async = !0;
+                n.src = "https://cdn.segment.com/analytics.js/v1/" + e + "/analytics.min.js";
+                var a = document.getElementsByTagName("script")[0];
+                a.parentNode.insertBefore(n, a);
+                analytics._loadOptions = t
+            };
+            analytics.SNIPPET_VERSION = "4.1.0";
+            analytics.load("0s8GP8sPjtyKB4m3fmyatWTXHNfPefkl");
+            analytics.page();
+        }
+    }();
+</script>
 </body>
-
 </html>
