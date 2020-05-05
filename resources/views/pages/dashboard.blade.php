@@ -6,6 +6,62 @@
 @section('content')
     <div class="content">
         <div class="container">
+            <!-- Modal -->
+            <div class="modal fade" id="badgeModal" tabindex="-1" role="dialog" aria-labelledby="badgeModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="badgeModalLabel">Submit Design Thinking Badge URL</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{route('badge')}}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+                                <img class="img img-fluid" src="{{asset('img/badge.png')}}">
+                                <input type="url" name="badge" value="{{old('bade',auth()->user()->badge)}}"
+                                       class="form-control" placeholder="Enter Badge URL">
+                                @if ($errors->has('badge'))
+                                    <span id="name-error" class="error text-danger"
+                                          for="input-name">{{ $errors->first('bade') }}</span>
+                                @endif
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Verify Badge</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @if (session('status'))
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-primary">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <i class="fa fa-times"></i>
+                            </button>
+                            <span>{{ session('status') }}</span>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-stats">
@@ -58,15 +114,15 @@
                                     <div class="numbers">
                                         <p class="card-category">Design Thinking</p>
                                         <p class="card-category" style="color: black;font-size: large">
-                                        @if(auth()->user()->badge == '')
-                                            Not Completed
-                                        @else
-                                            @if(auth()->user()->badge_verified == 1)
-                                               Verified
+                                            @if(auth()->user()->badge == '')
+                                                Not Completed
                                             @else
-                                               Not Verified
+                                                @if(auth()->user()->badge_verified == 1)
+                                                    Verified
+                                                @else
+                                                    Not Verified
+                                                @endif
                                             @endif
-                                        @endif
                                         </p>
                                     </div>
                                 </div>
@@ -76,12 +132,14 @@
                             <hr>
                             <div class="stats">
                                 @if(auth()->user()->badge == '')
-                                    <a class=""><i class="fa fa-cloud-upload"></i> Submit Badge</a>
+                                    <a href="#" type="button" class="" data-toggle="modal" data-target="#badgeModal"><i
+                                            class="fa fa-cloud-upload"></i> Submit Badge</a>
                                 @else
                                     @if(auth()->user()->badge_verified == 1)
                                         <i class="fa fa-fa-check-circle-o"></i>  Completed
                                     @else
-                                        <a class=""><i class="fa fa-cloud-upload"></i> Resubmit Badge</a>
+                                        <a href="#" class="" data-toggle="modal" data-target="#badgeModal"><i
+                                                class="fa fa-cloud-upload"></i> Resubmit Badge</a>
                                     @endif
                                 @endif
 
@@ -157,7 +215,8 @@
                                     the challenge.
 
                                     While you're at it, please follow us on <a target="_blank"
-                                        href="https://twitter.com/afrikathon">Twitter</a>, <a
+                                                                               href="https://twitter.com/afrikathon">Twitter</a>,
+                                    <a
                                         href="https://instagram.com/afrikathon__" target="_blank">Instagram</a>, and <a
                                         href="https://facebook.com/afrikathon" target="_blank">Facebook</a>
 
@@ -187,9 +246,47 @@
 
                                 </div>
 
+
                             </div>
                         </div>
                     </div>
+                    @if(auth()->user()->badge == "" || auth()->user()->badge_verified == 0 || auth()->user()->badge_verified == "")
+
+                        <div class="card ">
+
+                            <div class="card-body">
+                                <h3>Submit Design Thinking Badge URL</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form action="{{route('badge')}}" method="POST">
+                                            @csrf
+                                            <div class="modal-body">
+
+                                                <input type="url" name="badge" required
+                                                       class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                       placeholder="Enter Badge URL"
+                                                       value="{{old('bade',auth()->user()->badge)}}">
+                                                @if ($errors->has('badge'))
+                                                    <span id="name-error" class="error text-danger"
+                                                          for="input-name">{{ $errors->first('bade') }}</span>
+                                                @endif
+                                                <button type="submit" class="btn btn-black">Verify Badge
+                                                </button>
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img style="width: 500px" class="img img-fluid"
+                                             src="{{asset('img/badge.png')}}">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
