@@ -246,39 +246,46 @@
                                 </div>
 
 
-                                @if(auth()->user()->badge == "" || auth()->user()->badge_verified == 0 || auth()->user()->badge_verified == "")
-                                    <h3>Submit Design Thinking Badge URL</h3>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <form action="{{route('badge')}}" method="POST">
-                                                @csrf
-                                                <div class="modal-body">
-
-                                                    <input type="url" name="badge" required
-                                                           class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                           placeholder="Enter Badge URL"
-                                                           value="{{old('bade',auth()->user()->badge)}}">
-                                                    @if ($errors->has('badge'))
-                                                        <span id="name-error" class="error text-danger"
-                                                              for="input-name">{{ $errors->first('bade') }}</span>
-                                                    @endif
-                                                    <button type="submit" class="btn btn-black">Verify Badge
-                                                    </button>
-
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <img style="width: 500px" class="img img-fluid"
-                                                 src="{{asset('img/badge.png')}}">
-                                        </div>
-                                    </div>
-                                @endif
-
                             </div>
                         </div>
                     </div>
+                    @if(auth()->user()->badge == "" || auth()->user()->badge_verified == 0 || auth()->user()->badge_verified == "")
+
+                        <div class="card ">
+
+                            <div class="card-body">
+                                <h3>Submit Design Thinking Badge URL</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form action="{{route('badge')}}" method="POST">
+                                            @csrf
+                                            <div class="modal-body">
+
+                                                <input type="url" name="badge" required
+                                                       class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                       placeholder="Enter Badge URL"
+                                                       value="{{old('bade',auth()->user()->badge)}}">
+                                                @if ($errors->has('badge'))
+                                                    <span id="name-error" class="error text-danger"
+                                                          for="input-name">{{ $errors->first('bade') }}</span>
+                                                @endif
+                                                <button type="submit" class="btn btn-black">Verify Badge
+                                                </button>
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img style="width: 500px" class="img img-fluid"
+                                             src="{{asset('img/badge.png')}}">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
