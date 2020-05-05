@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeMail extends Mailable
+class BadgeVerified extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -32,6 +32,6 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.welcomel');
+        return $this->view('emails.badge');
     }
 }

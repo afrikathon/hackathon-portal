@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BadgeVerified;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -125,30 +129,38 @@ class HomeController extends Controller
 
         $client = new \GuzzleHttp\Client();
         try {
-            $response = $client->request('GET',  'https://api.youracclaim.com/v1/obi/v2/badge_assertions/'. Str::between($request->badge,'https://www.youracclaim.com/badges/','/public_url'));
+            $response = $client->request('GET',  'https://api.youracclaim.com/v1/obi/v2/badge_assertions/'. Str::between($request->badge,'youracclaim.com/badges/','/public_url'));
 
             $res = json_decode($response->getBody(), true); // '{"id": 1420053, "name": "guzzle", ...}'
 
+
             if ($res['evidence'][0]['name'] == "Enterprise Design Thinking, Practitioner") {
-                auth()->user()->upadate([
+                auth()->user()->update([
                     'badge' => $request->badge,
-                    'bade_verified' => '1'
+                    'badge_verified' => '1'
                 ]);
+                $user = new User([
+                    'name' => auth()->user()->name,
+                    'email' => auth()->user()->email
+                ]);
+                Mail::to($user)->send(new BadgeVerified($user));
             } else {
                 auth()->user()->update([
                     'badge' => $request->badge,
                     'badge_verified' => '0'
                 ]);
+                return back()->withErrors(['Badge Not Verified.', 'Course title should be Enterprise Design Thinking, Practitioner but got '.$res['evidence'][0]['name']]);
             }
         } catch (\Exception $e) {
             auth()->user()->update([
-                'badge' => $request->badge,
+                'badge' => null,
                 'badge_verified' => '0'
             ]);
+            return back()->withErrors(__('Badge Not Verified. Invalid badge URL'));
         }
 
 
-        return redirect()->back();
+        return back()->withStatus(__('Badge successfully Verified.'));
     }
 
 }
