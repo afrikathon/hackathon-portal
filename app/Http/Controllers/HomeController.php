@@ -131,7 +131,7 @@ class HomeController extends Controller
         try {
             $response = $client->request('GET',  'https://api.youracclaim.com/v1/obi/v2/badge_assertions/'. Str::between($request->badge,'youracclaim.com/badges/','/public_url'));
 
-            $res = json_decode($response->getBody(), true); // '{"id": 1420053, "name": "guzzle", ...}'
+            $res = json_decode($response->getBody(), true);
 
 
             if ($res['evidence'][0]['name'] == "Enterprise Design Thinking, Practitioner") {
