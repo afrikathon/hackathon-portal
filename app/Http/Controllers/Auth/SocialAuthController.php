@@ -194,6 +194,7 @@ class SocialAuthController extends Controller
                     // user can use reset password to create a password
                     'password' => ''
                 ]);
+                Mail::to($user)->send(new WelcomeMail($user));
             }
             if ($driver == 'github') {
                 $user->update([
@@ -224,7 +225,6 @@ class SocialAuthController extends Controller
             return redirect()->route('profile.show');
         }else {
             Auth::login($user, true);
-            Mail::to($user)->send(new WelcomeMail($user));
             return $this->sendSuccessResponse();
         }
     }

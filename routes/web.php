@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/teams', 'HomeController@teams')->name('teams');
     Route::get('/submit', 'HomeController@submit')->name('submit');
     Route::post('/submit/store', 'HomeController@submit_store')->name('submit.store');
+    Route::post('/badge', 'HomeController@badge')->name('badge');
 });
 
 
