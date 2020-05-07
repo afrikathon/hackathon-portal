@@ -14,16 +14,12 @@
 
     <!--  Social tags      -->
     <meta name="keywords" content="Afrikathon">
-    <meta name="description" content="The Opportunity Hackathon
-HACK THE LABOUR SYSTEM
-Rich in diversity and culture, let’s tap into our innermost potential to create the solutions for our future to make over 400 million talented Africans access to evenly distributed opportunity.">
+    <meta name="description" content="The Opportunity Hackathon, let’s tap into our innermost potential to create the solutions for our future to give over 400 million talented Africans access to evenly distributed opportunity.">
 
 
     <!-- Schema.org markup for Google+ -->
     <meta itemprop="name" content="Afrikathon ">
-    <meta itemprop="description" content="The Opportunity Hackathon
-HACK THE LABOUR SYSTEM
-Rich in diversity and culture, let’s tap into our innermost potential to create the solutions for our future to make over 400 million talented Africans access to evenly distributed opportunity.">
+    <meta itemprop="description" content="The Opportunity Hackathon, let’s tap into our innermost potential to create the solutions for our future to give over 400 million talented Africans access to evenly distributed opportunity.">
 
     <meta itemprop="image"
           content="https://avatars3.githubusercontent.com/u/60590865?s=200&v=4">
@@ -34,9 +30,7 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
     <meta name="twitter:site" content="@afrikathon">
     <meta name="twitter:title" content="Afrikathon ">
 
-    <meta name="twitter:description" content="The Opportunity Hackathon
-HACK THE LABOUR SYSTEM
-Rich in diversity and culture, let’s tap into our innermost potential to create the solutions for our future to make over 400 million talented Africans access to evenly distributed opportunity.">
+    <meta name="twitter:description" content="The Opportunity Hackathon, let’s tap into our innermost potential to create the solutions for our future to give over 400 million talented Africans access to evenly distributed opportunity.">
     <meta name="twitter:creator" content="@afrikathon">
     <meta name="twitter:image"
           content="https://avatars3.githubusercontent.com/u/60590865?s=200&v=4">
@@ -50,9 +44,7 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
     <meta property="og:image"
           content="https://avatars3.githubusercontent.com/u/60590865?s=200&v=4"/>
     <meta property="og:description"
-          content="The Opportunity Hackathon
-HACK THE LABOUR SYSTEM
-Rich in diversity and culture, let’s tap into our innermost potential to create the solutions for our future to make over 400 million talented Africans access to evenly distributed opportunity."/>
+          content="The Opportunity Hackathon, let’s tap into our innermost potential to create the solutions for our future to give over 400 million talented Africans access to evenly distributed opportunity."/>
     <meta property="og:site_name" content="Afrikathon"/>
 
     <title>
@@ -63,6 +55,9 @@ Rich in diversity and culture, let’s tap into our innermost potential to creat
     <!--     Fonts and icons     -->
     {{-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>--}}
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://load.fomo.com/api/v1/krbP3iJK9wgkXsld0oDvAA/load.js" async></script>
+
+
     <!-- CSS Files -->
     <link href="{{ asset('paper') }}/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet"/>
