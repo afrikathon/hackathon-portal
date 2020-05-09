@@ -108,7 +108,7 @@
                                                                 <td style="border-radius: 2px; width: 331.2px;"
                                                                     align="center" bgcolor="#0D1232"><a
                                                                         style="font-size: 14px; font-family: Arial,sans-serif; color: #ffffff; text-decoration: none; font-weight: normal; border-radius: 3px; border: 1px solid #0D1232; display: inline-block; padding: 12px 40px 12px 40px;"
-                                                                        href="https://afrikathon2020.slack.com/join/shared_invite/zt-e6ffro1d-rdjPaAP3DAYQJ673iU9PjQ"
+                                                                        href="https://join.slack.com/t/afrikathon2020/shared_invite/zt-e3gpsh1w-mahP_~5WK7xxbzvp_lZxQQ"
                                                                         target="_blank" rel="noopener">Join Afrikathon Slack workspace</a></td>
                                                             </tr>
                                                             </tbody>
