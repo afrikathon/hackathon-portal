@@ -37,7 +37,7 @@ class HomeController extends Controller
      */
     public function team()
     {
-        return view('pages.team');
+        return view('teams.show');
     }
 
     /**
@@ -47,7 +47,7 @@ class HomeController extends Controller
      */
     public function teams()
     {
-        return view('pages.teams');
+        return view('teams.index');
     }
 
     /**
@@ -57,7 +57,7 @@ class HomeController extends Controller
      */
     public function team_create()
     {
-        return view('pages.team_create');
+        return view('teams.create');
     }
 
     /**
