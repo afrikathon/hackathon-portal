@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Invite;
 use App\Mail\BadgeVerified;
 use App\Team;
 use App\TeamMember;
@@ -20,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('profile');
+        $this->middleware('auth')->except(['profile']);
     }
 
     /**
@@ -38,7 +39,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function team()
+    public function team(Team $team)
     {
         return view('teams.show');
     }
@@ -137,11 +138,32 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @param Request $request
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function team_invite(Request $request)
+    public function team_invite(Request $request,Team $team)
     {
-        return view('pages.team');
+        $invite = Invite::create([
+            'team_id' => $team->id,
+            'user_id' => auth()->id(),
+            'email' => $request->email,
+            'message' => $request->message,
+        ]);
+        $user = new User();
+        $user->email = $request->email;
+        $user->name = $request->email;
+        Mail::to($user)->send(new \App\Mail\Invite($invite));
+        return redirect()->back();
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function team_invite_show(Team $team, Invite $invite)
+    {
+        return view('teams.invite',['team'=>$team,'invite'=>$invite]);
     }
 
     /**

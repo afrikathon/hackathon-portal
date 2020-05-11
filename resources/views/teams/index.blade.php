@@ -25,10 +25,12 @@
                                                 <a class="nav-link" href="#users" data-toggle="tab">Browse All
                                                     Participates</a>
                                             </li>
+                                            @if( \App\TeamMember::where('user_id',auth()->id())->count() >= 1 )
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#invite" data-toggle="tab">Invite Teammates
                                                     Email ID</a>
                                             </li>
+                                            @endif
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#teams" data-toggle="tab">Browse Teams</a>
                                             </li>
@@ -214,10 +216,15 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if( \App\TeamMember::where('user_id',auth()->id())->count() >= 1 )
+                                        @php
+                                            $team = \App\TeamMember::where('user_id',auth()->id())->first();
+                                        $team = \App\Team::find($team->team_id)
+                                        @endphp
                                     <div class="tab-pane" id="invite">
                                         <div class="container">
                                             <h4>Invite Teammates by email</h4>
-                                            <form action="" method="POST">
+                                            <form action="{{route('team.invite',['team'=>$team])}}" method="POST">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -262,6 +269,7 @@
                                             </form>
                                         </div>
                                     </div>
+                                    @endif
                                     <div class="tab-pane" id="teams">
                                         <div class="container">
                                             <div class="table-full-width">
