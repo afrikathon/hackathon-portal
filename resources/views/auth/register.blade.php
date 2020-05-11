@@ -12,7 +12,7 @@
                         <div class="description">
                             <img src="https://afrikathon.org/wp-content/uploads/2020/04/logo-white.png" width="70%">
                             <h3 class="description">
-                                Late Registration Ends : May 08, 2020
+                                Late Registration will close soon.
                             </h3>
                         </div>
                     </div>
