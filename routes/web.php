@@ -30,14 +30,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/edit', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-    Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+   /* Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);*/
     Route::get('profile/{user}', 'HomeController@profile')->name('profile');
-    Route::get('/team{team}', 'HomeController@team')->name('team');
+    Route::get('/teams', 'HomeController@teams')->name('teams');
+    Route::get('/team/{team}', 'HomeController@team')->name('team');
     Route::get('/team/create', 'HomeController@team_create')->name('team.create');
     Route::post('/team/store', 'HomeController@team_store')->name('team.store');
     Route::post('/team/{team}/join', 'HomeController@team_join')->name('team.join');
     Route::post('/team/{team}/invite', 'HomeController@team_invite')->name('team.invite');
-    Route::get('/teams', 'HomeController@teams')->name('teams');
     Route::get('/submit', 'HomeController@submit')->name('submit');
     Route::post('/submit/store', 'HomeController@submit_store')->name('submit.store');
     Route::post('/badge', 'HomeController@badge')->name('badge');
