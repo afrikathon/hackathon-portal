@@ -127,6 +127,25 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function team_update(Request $request,Team $team)
+    {
+
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+        $team = $team->update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+        return redirect()->back();
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
      * @return \Illuminate\View\View
      */
     public function team_join(Request $request)
