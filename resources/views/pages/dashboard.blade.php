@@ -169,7 +169,7 @@
                         <div class="card-footer ">
                             <hr>
                             <div class="stats">
-                                <i class="fa fa-times"></i> Teams are not open yet
+                                <i class="fa fa-globe"></i> <a href="https://kente.afrikathon.org/teams">Create a Team</a>
                             </div>
                         </div>
                     </div>
