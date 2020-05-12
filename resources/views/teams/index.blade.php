@@ -122,7 +122,7 @@
                                                                 <td class="td-actions text-right">
                                                                     @if($member->id == $team->lead_id)
                                                                         <p>(Team Lead)</p>
-                                                                    @else
+                                                                    @elseif($team->lead_id == auth()->id())
                                                                         <button type="button" rel="tooltip" title=""
                                                                                 class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
                                                                                 data-original-title="Remove">
@@ -303,13 +303,13 @@
                                                     <tbody>
                                                     @forelse(\App\Team::all() as $team)
                                                         <tr>
-                                                            <td class="img-row">
+                                                          {{--  <td class="img-row">
                                                                 <div class="img-wrapper">
                                                                     <img
                                                                         src="https://paper-dashboard-pro-laravel.creative-tim.com/img/faces/ayo-ogunseinde-2.jpg"
                                                                         class="img-raised">
                                                                 </div>
-                                                            </td>
+                                                            </td>--}}
                                                             <td class="text-left">
                                                                 <h5 class="mb-0">{{$team->name}}</h5>
                                                                 <p>{{$team->description}}</p>
@@ -354,7 +354,7 @@
                         <div class="table-full-width">
                             <table class="table">
                                 <tbody>
-                                @foreach(\App\Invite::where('email',auth()->user()->email)->get() as $invite)
+                                @foreach(\App\Invite::where('email',auth()->user()->email)->where('status','Pending')->get() as $invite)
                                     <tr>
                                         <td class="img-row">
                                             <a href="{{route('team.invite.show',['team'=>$invite->team,'invite'=>$invite])}}">
@@ -369,6 +369,7 @@
                                             <a href="{{route('team.invite.show',['team'=>$invite->team,'invite'=>$invite])}}">
                                                 <p>{{$invite->user->name}} invited you to join
                                                     team {{$invite->team->name}}</p>
+
                                             </a>
                                         </td>
                                         <td class="td-actions text-right">
@@ -379,7 +380,7 @@
 
                                     </tr>
                                 @endforeach
-                                @foreach(\App\Invite::where('user_id',auth()->id())->get() as $invite)
+                                @foreach(\App\Invite::where('user_id',auth()->id())->where('status','<>','Accepted')->get() as $invite)
                                     @php
                                         $new_user = \App\User::where('email',$invite->email)->first();
                                     @endphp

@@ -37,7 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/team/create', 'HomeController@team_create')->name('team.create');
     Route::post('/team/store', 'HomeController@team_store')->name('team.store');
     Route::put('/team/{team}/update', 'HomeController@team_update')->name('team.update');
-    Route::post('/team/{team}/join', 'HomeController@team_join')->name('team.join');
+    Route::get('/team/{team}/invite/{invite}/accept', 'HomeController@team_accept')->name('team.invite.accept');
+    Route::get('/team/{team}/invite/{invite}/decline', 'HomeController@team_decline')->name('team.invite.decline');
     Route::post('/team/{team}/invite', 'HomeController@team_invite')->name('team.invite');
     Route::get('/team/{team}/invite/{invite}', 'HomeController@team_invite_show')->name('team.invite.show');
     Route::get('/submit', 'HomeController@submit')->name('submit');
