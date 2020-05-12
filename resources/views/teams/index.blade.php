@@ -6,7 +6,7 @@
 @section('content')
     <div class="content">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="card ">
 
                     <div class="card-body">
@@ -189,7 +189,7 @@
                                             <div class="table-full-width">
                                                 <table class="table">
                                                     <tbody>
-                                                    @foreach(\App\User::all()  as $user)
+                                                    @foreach(\App\User::where('id','<>',auth()->id())->get()  as $user)
                                                         <tr>
                                                             <td class="img-row">
                                                                 <div class="img-wrapper">
@@ -206,19 +206,33 @@
                                                             </td>
                                                             @if( \App\TeamMember::where('user_id',auth()->id())->count() >= 1 )
                                                                 <td class="td-actions text-right">
-                                                                    <a type="button" id="{{$user->email}}" rel="tooltip"
-                                                                       title="Invite"
-                                                                       class="btn btn-link text-primary inviteUser"
-                                                                       href="#"
-                                                                       data-original-title="Invite">
+                                                                    @if(\App\Invite::where('team_id',$team->id)->where('email',$user->email)->count() >= 1)
+                                                                        <a type="button" id="{{$user->email}}"
+                                                                           rel="tooltip"
+                                                                           title="Invite"
+                                                                           class="btn btn-link text-dark"
+                                                                           data-original-title="Invite">
+                                                                            <i class="fa fa-check"></i>Invitation Sent
+                                                                        </a>
+                                                                    @else
+                                                                        <a type="button" id="{{$user->email}}"
+                                                                           rel="tooltip"
+                                                                           title="Invite"
+                                                                           class="btn btn-link text-primary inviteUser"
+                                                                           href="#"
+                                                                           data-original-title="Invite">
 
-                                                                        <span class="in"> <i class="nc-icon nc-simple-add"></i> Invite
+                                                                        <span class="in"> <i
+                                                                                class="nc-icon nc-simple-add"></i> Invite
                                                                         </span>
-                                                                        <span class="load" style="display: none"> <i class="fa fa-spinner fa-spin"></i> Sending Invite
+                                                                            <span class="load" style="display: none"> <i
+                                                                                    class="fa fa-spinner fa-spin"></i> Sending Invite
                                                                         </span>
-                                                                        <span class="sent" style="display: none"><i class="fa fa-check"></i> Sent
+                                                                            <span class="sent" style="display: none"><i
+                                                                                    class="fa fa-check"></i>Invitation Sent
                                                                         </span>
-                                                                    </a>
+                                                                        </a>
+                                                                    @endif
                                                                 </td>
                                                             @endif
                                                         </tr>
@@ -300,13 +314,15 @@
                                                                 <h5 class="mb-0">{{$team->name}}</h5>
                                                                 <p>{{$team->description}}</p>
                                                             </td>
-                                                            {{--  <td class="td-actions text-right">
+                                                            @if( \App\TeamMember::where('user_id',auth()->id())->count() < 1 )
+                                                              <td class="td-actions text-right">
                                                                   <button type="button" rel="tooltip" title=""
                                                                           class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
                                                                           data-original-title="Remove">
                                                                       <i class="nc-icon nc-simple-remove"></i>
                                                                   </button>
-                                                              </td>--}}
+                                                              </td>
+                                                            @endif
                                                         </tr>
                                                     @empty
                                                         <tr>
@@ -329,11 +345,63 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card ">
-
+                    <div class="card-header">
+                        <h5>Invites and requests </h5>
+                    </div>
                     <div class="card-body">
+                        <div class="table-full-width">
+                            <table class="table">
+                                <tbody>
+                                @foreach(\App\Invite::where('email',auth()->user()->email)->get() as $invite)
+                                    <tr>
+                                        <td class="img-row">
+                                            <a href="{{route('team.invite.show',['team'=>$invite->team,'invite'=>$invite])}}">
+                                                <div class="img-wrapper">
+                                                    <img
+                                                        src="{{$invite->user->avatar}}"
+                                                        class="img-raised">
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td class="text-left">
+                                            <a href="{{route('team.invite.show',['team'=>$invite->team,'invite'=>$invite])}}">
+                                                <p>{{$invite->user->name}} invited you to join
+                                                    team {{$invite->team->name}}</p>
+                                            </a>
+                                        </td>
+                                        <td class="td-actions text-right">
+                                            <a href="{{route('team.invite.show',['team'=>$invite->team,'invite'=>$invite])}}">
+                                                <small>View Invite</small>
+                                            </a>
+                                        </td>
 
+                                    </tr>
+                                @endforeach
+                                @foreach(\App\Invite::where('user_id',auth()->id())->get() as $invite)
+                                    @php
+                                        $new_user = \App\User::where('email',$invite->email)->first();
+                                    @endphp
+                                    @if($new_user)
+                                        <tr>
+                                            <td class="text-left">
+                                                <p>You invited {{$new_user->name}} to join {{$invite->team->name}}</p>
+                                                <p><small>{{$invite->status}}</small></p>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td class="text-left">
+                                                <p>You invited {{$invite->email}} to join {{$invite->team->name}}</p>
+                                                <p><small>{{$invite->status}}</small></p>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -365,7 +433,7 @@
                         btn.find(".in").hide()
                         btn.find(".load").hide()
                         btn.find(".sent").show()
-                        btn.disable()
+                        btn.removeClass('inviteUser')
                     }
                 });
             });

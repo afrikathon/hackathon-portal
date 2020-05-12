@@ -35,6 +35,10 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
     public function team(){
-        $this->hasOneThrough(Team::class,TeamMember::class,'user_id','team_id');
+      return  $this->hasOneThrough(Team::class,TeamMember::class,'user_id','team_id','id','user_id');
     }
+
+    public function member_of(){
+        return $this->hasOne(TeamMember::class,'user_id');
+       }
 }

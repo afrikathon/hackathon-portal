@@ -148,31 +148,59 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="fa fa-users text-danger"></i>
+                    @if( \App\TeamMember::where('user_id',auth()->id())->count() >= 1 )
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="fa fa-users text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Team</p>
+                                            <p class="card-title">{{auth()->user()->member_of->team->name}}
+                                            </p>
+                                            <p>
+                                            </p></div>
                                     </div>
                                 </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">Teams</p>
-                                        <p class="card-title">No Team
-                                        </p>
-                                        <p>
-                                        </p></div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-globe"></i> <a href="{{route('teams')}}">View Team</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-globe"></i> <a href="https://kente.afrikathon.org/teams">Create a Team</a>
+                    @else
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="fa fa-users text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Teams</p>
+                                            <p class="card-title">No Team
+                                            </p>
+                                            <p>
+                                            </p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-globe"></i> <a href="{{route('teams')}}">Create a Team</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-stats">
