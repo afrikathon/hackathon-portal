@@ -13,7 +13,7 @@
             <ul class="navbar-nav nav-menu">
                 <li class="nav-item"><a class="nav-menu-link" href="{{route('profile.show')}}">Profile</a></li>
                 <li class="nav-item"><a class="nav-menu-link" href="{{route('teams')}}">Teams</a></li>
-               {{-- <li class="nav-item"><a class="nav-menu-link" href="{{route('submit')}}">Submit Idea</a></li>--}}
+                <li class="nav-item"><a class="nav-menu-link" href="{{route('submit')}}">Submissions</a></li>
             </ul>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"

@@ -15,4 +15,7 @@ class Team extends Model
     public function members(){
        return $this->hasManyThrough(User::class,TeamMember::class,'team_id','id','id','user_id');
     }
+    public function submission(){
+        return  $this->hasOne(Submission::class);
+    }
 }
