@@ -157,6 +157,41 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @param Request $request
+     * @param Team $team
+     * @param Invite $invite
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function team_accept(Request $request, Team $team, Invite $invite)
+    {
+        $invite->update([
+           'status' => "Accepted"
+        ]);
+        TeamMember::create([
+            'team_id' => $team->id,
+            'user_id' => auth()->id()
+        ]);
+        return redirect()->route('teams');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @param Team $team
+     * @param Invite $invite
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function team_decline(Request $request, Team $team, Invite $invite)
+    {
+        $invite->update([
+            'status' => "Decline"
+        ]);
+        return redirect()->route('teams');
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function team_invite(Request $request,Team $team)

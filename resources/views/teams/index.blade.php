@@ -122,7 +122,7 @@
                                                                 <td class="td-actions text-right">
                                                                     @if($member->id == $team->lead_id)
                                                                         <p>(Team Lead)</p>
-                                                                    @else
+                                                                    @elseif($team->lead_id == auth()->id())
                                                                         <button type="button" rel="tooltip" title=""
                                                                                 class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
                                                                                 data-original-title="Remove">
@@ -304,36 +304,47 @@
                                                     @forelse(\App\Team::all() as $team)
                                                         <tr>
                                                             <td class="img-row">
-                                                                <div class="img-wrapper">
-                                                                    <img
-                                                                        src="https://paper-dashboard-pro-laravel.creative-tim.com/img/faces/ayo-ogunseinde-2.jpg"
-                                                                        class="img-raised">
+                                                                <div class="avatar-circle"
+                                                                     style="background-color: <?php printf("#%06X\n", mt_rand(0, 0x222222)); ?>">
+                                                                    <span class="initials">{{Str::substr($team->name, 0, 1)}}</span>
                                                                 </div>
                                                             </td>
                                                             <td class="text-left">
                                                                 <h5 class="mb-0">{{$team->name}}</h5>
                                                                 <p>{{$team->description}}</p>
-                                                            </td>
-                                                            @if( \App\TeamMember::where('user_id',auth()->id())->count() < 1 )
-                                                              <td class="td-actions text-right">
-                                                                  <button type="button" rel="tooltip" title=""
-                                                                          class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
-                                                                          data-original-title="Remove">
-                                                                      <i class="nc-icon nc-simple-remove"></i>
-                                                                  </button>
-                                                              </td>
-                                                            @endif
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <h5 class="mb-0">No team has been created yet.</h5>
-                                                                <a href="{{route('teams')}}" class="btn btn-primary">Create
-                                                                    a Team Now</a>
+                                                               {{-- <h6>Teammates</h6>
+
+                                                        @foreach($team->members as $member)
+                                                            <ul>
+                                                                <li class="text-left">
+                                                                    <h6 style="font-size: xx-small" class="mb-0">{{$member->name}} ({{$member->job_title}})</h6>
+                                                                </li>
+                                                            </ul>
+                                                            @endforeach--}}
 
                                                             </td>
-                                                        </tr>
-                                                    @endforelse
+                                                            {{-- @if( \App\TeamMember::where('user_id',auth()->id())->count() < 1 )
+                                                               <td class="td-actions text-right">
+                                                                   <button type="button" rel="tooltip" title=""
+                                                                           class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                                                                           data-original-title="Remove">
+                                                                       <i class="nc-icon nc-simple-remove"></i>
+                                                                   </button>
+                                                               </td>
+                                                             @endif--}}
+                                                            </tr>
+                                                            @empty
+                                                                <tr>
+                                                                    <td class="text-left">
+                                                                        <h5 class="mb-0">No team has been created
+                                                                            yet.</h5>
+                                                                        <a href="{{route('teams')}}"
+                                                                           class="btn btn-primary">Create
+                                                                            a Team Now</a>
+
+                                                                    </td>
+                                                                </tr>
+                                                            @endforelse
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -354,7 +365,7 @@
                         <div class="table-full-width">
                             <table class="table">
                                 <tbody>
-                                @foreach(\App\Invite::where('email',auth()->user()->email)->get() as $invite)
+                                @foreach(\App\Invite::where('email',auth()->user()->email)->where('status','Pending')->get() as $invite)
                                     <tr>
                                         <td class="img-row">
                                             <a href="{{route('team.invite.show',['team'=>$invite->team,'invite'=>$invite])}}">
@@ -369,6 +380,7 @@
                                             <a href="{{route('team.invite.show',['team'=>$invite->team,'invite'=>$invite])}}">
                                                 <p>{{$invite->user->name}} invited you to join
                                                     team {{$invite->team->name}}</p>
+
                                             </a>
                                         </td>
                                         <td class="td-actions text-right">
@@ -379,7 +391,7 @@
 
                                     </tr>
                                 @endforeach
-                                @foreach(\App\Invite::where('user_id',auth()->id())->get() as $invite)
+                                @foreach(\App\Invite::where('user_id',auth()->id())->where('status','<>','Accepted')->get() as $invite)
                                     @php
                                         $new_user = \App\User::where('email',$invite->email)->first();
                                     @endphp
@@ -439,4 +451,26 @@
             });
         });
     </script>
+@endsection
+@section('style')
+    <style>
+        .avatar-circle {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+        }
+
+        .initials {
+            position: relative;
+            top: 15px; /* 25% of parent */
+            font-size: 30px; /* 50% of parent */
+            line-height: 30px; /* 50% of parent */
+            color: #fff;
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+        }
+    </style>
 @endsection

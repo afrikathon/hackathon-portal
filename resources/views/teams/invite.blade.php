@@ -13,8 +13,8 @@
                         <p>  {{$invite->user->name}} wants you to be part of team {{$invite->team->name}}.
                             <br>Please accept the request if you would like to be part of
                             team {{$invite->team->name}}.<br></p>
-                        <a class="btn btn-primary">Accept</a>
-                        <a class="btn btn-danger">Decline</a>
+                        <a class="btn btn-primary" href="{{route('team.invite.accept',['team'=>$team,'invite'=>$invite])}}">Accept</a>
+                        <a class="btn btn-danger" href="{{route('team.invite.decline',['team'=>$team,'invite'=>$invite])}}">Decline</a>
                            <h4>Team Name: {{ $team->name}}</h4>
                            <p>{{$team->description}}</p>
                         <p> Team's github  Repositories : <a href="{{$team->github}}" target="_blank"> {{$team->github}}</a></p>
