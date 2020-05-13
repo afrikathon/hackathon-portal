@@ -220,7 +220,7 @@
                                             $team = \App\Team::find($team->team_id);
                                             $submission = \App\Submission::where('team_id',$team->id)->first()
                                             @endphp
-                                            @if($submission->title != "")
+                                            @if(\App\Submission::where('team_id',$team->id)->count() >= 1)
                                                 <p class="card-category"
                                                    style="color: black;font-size: xx-small">{{$submission->title}}</p>
                                             @else
