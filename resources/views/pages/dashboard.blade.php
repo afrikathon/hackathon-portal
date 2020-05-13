@@ -203,31 +203,71 @@
                     @endif
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="fa fa-lightbulb-o text-primary"></i>
+                    @if( \App\TeamMember::where('user_id',auth()->id())->count() >= 1 )
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="fa fa-lightbulb-o text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Submit Idea</p>
+                                            @php
+                                                $team = \App\TeamMember::where('user_id',auth()->id())->first();
+                                            $team = \App\Team::find($team->team_id);
+                                            $submission = \App\Submission::where('team_id',$team->id)->first()
+                                            @endphp
+                                            @if($submission->title != "")
+                                                <p class="card-category"
+                                                   style="color: black;font-size: xx-small">{{$submission->title}}</p>
+                                            @else
+                                                <p class="card-category" style="color: black;font-size: large">Not
+                                                    Submitted</p>
+                                            @endif
+                                            <p>
+                                            </p></div>
                                     </div>
                                 </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">Submit Idea</p>
-                                        <p class="card-category" style="color: black;font-size: large">No Submitted
-                                        </p>
-                                        <p>
-                                        </p></div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <a href="{{route('submit')}}"> <i class="fa fa-upload"></i> Submissions</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <a> <i class="fa fa-times"></i> Idea Submission not open yet</a>
+                    @else
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="fa fa-lightbulb-o text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">Submit Idea</p>
+
+                                            <p class="card-category" style="color: black;font-size: medium">Join a to
+                                                before submitting idea
+                                            </p>
+                                            <p>
+                                            </p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <a href="{{route('teams')}}"> <i class="fa fa-users"></i> Join or Create a Team</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
             <div class="row">

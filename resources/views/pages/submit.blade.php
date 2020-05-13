@@ -5,7 +5,19 @@
 
 @section('content')
     <div class="content">
-
+        @if (session('status'))
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="alert alert-primary">
+                        <button type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <span>{{ session('status') }}</span>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-3">
                 <div class="card card-user">
@@ -15,53 +27,23 @@
                     <div class="card-body">
                         <div class="author">
 
-                            <img class="avatar border-gray" src="{{ auth()->user()->avatar}}" alt="...">
-
-                            <h5 class="title mb-0">{{ __(auth()->user()->name)}}</h5>
-                            <p class="mb-0">{{ __(auth()->user()->email)}}</p>
+                            {{--<img class="avatar border-gray" src="{{ auth()->user()->avatar}}" alt="...">--}}
+                            <div class=" avatar avatar-circle"
+                                 style="background-color: <?php printf("#%06X\n", mt_rand(0, 0x222222)); ?>">
+                                <span class="initials">{{Str::substr($team->name, 0, 1)}}</span>
+                            </div>
+                            <h5 class="title mb-0">Team {{ __($team->name)}}</h5>
 
                             <p class="description mb-0">
-                                <i class="fa fa-marker"></i> {{ __(auth()->user()->city)}},{{auth()->user()->country}}
-                            </p>
-                            <p class="description mb-0">
-                                {{ __(auth()->user()->bio)}}
+                                {{ __($team->description)}}
                             </p>
 
                             <div class="social">
-                                @if(auth()->user()->github != "")
-                                    <a href="{{ auth()->user()->github }}" target="_blank"
-                                       class="btn btn-icon btn-round btn-gtihub">
-                                        <i class="fa fa-github"></i>
-                                    </a>
-                                @endif
-                                @if(auth()->user()->linkedin != "")
-                                    <a href="{{ auth()->user()->linkedin }}"
-                                       target="_blank"
-                                       class="btn btn-icon btn-round btn-twitter">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                @endif
-                                @if(auth()->user()->twitter != "")
-                                    <a href="{{ auth()->user()->twitter }}"
-                                       target="_blank"
-                                       class="btn btn-icon btn-round btn-twitter">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                @endif
-                                @if(auth()->user()->facebook != "")
-                                    <a href="{{auth()->user()->facebook }}"
-                                       target="_blank"
-                                       class="btn btn-icon btn-round btn-facebook">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                @endif
-                                @if(auth()->user()->website != "")
-                                    <a href="{{auth()->user()->website }}"
-                                       target="_blank"
-                                       class="btn btn-icon btn-round btn-dribbble">
-                                        <i class="fa fa-globe"></i>
-                                    </a>
-                                @endif
+                                <a href="{{ $team->github }}" target="_blank"
+                                   class="btn btn-icon btn-round btn-gtihub">
+                                    <i class="fa fa-github"></i>
+                                </a>
+
                             </div>
                         </div>
                         <p class="description text-center">
@@ -73,62 +55,70 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <h4>Your Team Submissions</h4>
+                        <form action="{{route('submit.store')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail4">title</label>
+                                    <input type="text" value="{{ old('name',$team->submission->title) }}" required
+                                           name="title" class="form-control" placeholder="Project Title">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress">Address</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress2">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
                             </div>
                             <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail4">Description</label>
+                                    <textarea type="text" required name="description" class="form-control"
+                                              placeholder="Project Description">{{ old('name',$team->submission->description) }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputCity">City</label>
-                                    <input type="text" class="form-control" id="inputCity">
+                                    <label for="inputEmail4">Description</label>
+                                    <textarea type="text" name="problem" class="form-control"
+                                              placeholder="Problem Statement">{{ old('name',$team->submission->problem) }}</textarea>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputState">State</label>
-                                    <select id="inputState" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="inputZip">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Description</label>
+                                    <textarea type="text" name="solution" class="form-control"
+                                              placeholder="solution Statement">{{ old('name',$team->submission->solution) }}</textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        Check me out
-                                        <span class="form-check-sign">
-            <span class="check"></span>
-          </span>
-                                    </label>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
+
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <p>You can continue updating your submission till this phase is over.</p>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
 @endsection
 @section('scripts')
 
+@endsection
+@section('style')
+    <style>
+        .avatar-circle {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            margin-left: 23%;
+        }
+
+        .initials {
+            position: relative;
+            top: 60px; /* 25% of parent */
+            font-size: 100px; /* 50% of parent */
+            line-height: 50px; /* 50% of parent */
+            color: #fff;
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+        }
+    </style>
 @endsection

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Invite;
 use App\Mail\BadgeVerified;
+use App\Submission;
 use App\Team;
 use App\TeamMember;
 use App\User;
+use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -228,7 +230,18 @@ class HomeController extends Controller
      */
     public function submit()
     {
-        return view('pages.submit');
+        if( \App\TeamMember::where('user_id',auth()->id())->count() < 1 ){
+            return redirect()->route('root');
+        }else{
+            $memberof = \App\TeamMember::where('user_id',auth()->id())->first();
+            $team = $memberof->team;
+            if (Submission::where('team_id',$team->id)->count() < 1) {
+                $submition =  Submission::create([
+                    'team_id' => $team->id,
+                ]);
+            }
+        }
+        return view('pages.submit',['team'=>$team]);
     }
 
     /**
@@ -239,7 +252,47 @@ class HomeController extends Controller
      */
     public function submit_store(Request $request)
     {
-        return view('pages.team');
+
+
+       /* // Authenticating with a keyfile path.
+        $storage = new StorageClient([
+            'keyFilePath' => storage_path('app/key.json')
+        ]);
+        $bucket = $storage->bucket('afrikathon');
+        $object = $bucket->object('submissions_2020');
+        $object = $bucket->upload(
+            fopen($request->file->path(), 'r'),
+            [
+                'resumable' => true,
+                'name' => 'submissions_2020/new-name.jpg',
+                'metadata' => [
+                    'contentLanguage' => 'en'
+                ]
+            ]
+        );
+
+        return $object->info();*/
+
+        if( \App\TeamMember::where('user_id',auth()->id())->count() < 1 ){
+            return redirect()->route('root');
+        }
+        $memberof = \App\TeamMember::where('user_id',auth()->id())->first();
+        $team = $memberof->team;
+
+        if (Submission::where('team_id',$team->id)->count() >= 1){
+          $submition =  Submission::where('team_id',$team->id)->first();
+            $submition->update($input = $request->only([
+                'title', 'description','problem','solution'
+            ]));
+        }else{
+            $submition =  Submission::create([
+                'team_id' => $team->id,
+            ]);
+            $submition->update($input = $request->only([
+                'title', 'description','problem','solution'
+            ]));
+        }
+        return redirect()->back()->withStatus('Your team submssion`s has been updated');
     }
 
     /**

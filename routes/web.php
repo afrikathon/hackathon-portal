@@ -41,8 +41,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/team/{team}/invite/{invite}/decline', 'HomeController@team_decline')->name('team.invite.decline');
     Route::post('/team/{team}/invite', 'HomeController@team_invite')->name('team.invite');
     Route::get('/team/{team}/invite/{invite}', 'HomeController@team_invite_show')->name('team.invite.show');
+
     Route::get('/submit', 'HomeController@submit')->name('submit');
     Route::post('/submit/store', 'HomeController@submit_store')->name('submit.store');
+
     Route::post('/badge', 'HomeController@badge')->name('badge');
 });
 
